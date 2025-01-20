@@ -934,7 +934,6 @@ find "${user_home_dir}/.config/JetBrains/IntelliJIdea" -type f -exec chmod a-x {
 find "${user_home_dir}/.config/JetBrains/Rider" -type f -exec chmod a-x {} +
 find "${user_home_dir}/.config/JetBrains/GoLand" -type f -exec chmod a-x {} +
 find "${user_home_dir}/.config/JetBrains/CLion" -type f -exec chmod a-x {} +
-chmod 700 "${user_home_dir}/.local/j.sh"
 
 chown -R "${VM_USER}:${VM_USER_GROUP}" "${user_home_dir}"
 
