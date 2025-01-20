@@ -1,0 +1,9 @@
+[user]
+        name = {name}
+        email = {email}
+[core]
+        autocrlf = input
+        excludesfile = /home/user/.gitignore_global
+        editor = vim
+[push]
+        default = current

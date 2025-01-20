@@ -1,0 +1,90 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+box_user = "user"
+box_password = "user"
+box_all_users_group = "users"
+provision_content_destination_dir = "/tmp/dev"
+
+ws_host_dir = File.expand_path("~/ws")
+documents_host_dir = File.expand_path("~/Documents")
+one_drive_host_dir = File.expand_path("~/OneDrive")
+
+vbox_default_vm_dir = File.expand_path("~/VirtualBox VMs")
+ws_disk = vbox_default_vm_dir + "/ws.vmdk"
+repository_disk = vbox_default_vm_dir + "/repository.vmdk"
+containers_disk = vbox_default_vm_dir + "/containers.vmdk"
+
+Vagrant.configure("2") do |config|
+  vm_name = "dev"
+  config.vm.box = "rocky-dev"
+
+  # TODO: create repository for Vagrant boxes and provide link to repository
+  #config.vm.box_url = "http://..."
+
+  config.vm.provision "file", source: "src/content", destination: provision_content_destination_dir
+  config.vm.provision "shell" do |c|
+    c.path = "src/scripts/bootstrap.sh"
+    c.env = {
+      "VAGRANT_BOX_USER" => box_user,
+      "VAGRANT_BOX_PASSWORD" => box_password,
+      "VAGRANT_BOX_USER_GROUP" => box_user,
+      "VAGRANT_BOX_ALL_USERS_GROUP" => box_all_users_group,
+      "PROVISION_CONTENT_DIR" => provision_content_destination_dir
+    }
+  end
+
+  # Remove default /vagrant shared folder
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+
+  # Reset MAC address of network adapter to force generation of new random one
+  config.vm.base_mac = nil
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.name = vm_name
+    vb.customize ["modifyvm", :id, "--description", "Development environment"]
+    vb.cpus = 8
+    vb.memory = 16384
+
+    # Hide menu bar in window mode
+    vb.customize ["setextradata", :id, "GUI/MenuBar/Enabled", "false"]
+    # Hide mini toolbar in full screen mode
+    vb.customize ["setextradata", :id, "GUI/ShowMiniToolBar", "false"]
+    # Hide status bar in window mode
+    vb.customize ["setextradata", :id, "GUI/StatusBar/Enabled", "false"]
+    # Use maximized window by default
+    vb.customize ["setextradata", :id, "GUI/LastNormalWindowPosition", "0,23,800,600,max"]
+    # Resize guest OS display
+    vb.customize ["setextradata", :id, "GUI/AutoresizeGuest", "true"]
+
+    # Change these values to match desired screen size.
+    # Values can be found in existing VM - in *.vbox file.
+    vb.customize ["setextradata", :id, "GUI/LastGuestSizeHint", "1920, 1200"]
+
+    # Max number of monitors
+    vb.customize ["modifyvm", :id, "--monitorcount", 1]
+    # Proxy DNS traffic on NAT network adapter
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    # Turn off support of Remote Display
+    vb.customize ["modifyvm", :id, "--vrde", "off"]
+
+    # Shared folders
+    if File.directory?(ws_host_dir)
+      vb.customize ["sharedfolder", "add", :id, "--name", "ws", "--hostpath", ws_host_dir, "--automount"]
+    end
+    if File.directory?(documents_host_dir)
+      vb.customize ["sharedfolder", "add", :id, "--name", "documents", "--hostpath", documents_host_dir, "--automount"]
+    end
+    if File.directory?(one_drive_host_dir)
+      vb.customize ["sharedfolder", "add", :id, "--name", "onedrive", "--hostpath", one_drive_host_dir, "--automount"]
+    end
+
+    # Attach ws.vmdk as 2nd HDD
+    vb.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', 1, '--device', 0, '--type', 'hdd', '--mtype', 'writethrough', '--hotpluggable', 'on', '--medium', ws_disk]
+    # Attach repository.vmdk as 3rd HDD
+    vb.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', 2, '--device', 0, '--type', 'hdd', '--mtype', 'writethrough', '--hotpluggable', 'on', '--medium', repository_disk]
+    # Attach containers.vmdk as 4th HDD
+    vb.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', 3, '--device', 0, '--type', 'hdd', '--mtype', 'writethrough', '--hotpluggable', 'on', '--medium', containers_disk]
+  end
+end

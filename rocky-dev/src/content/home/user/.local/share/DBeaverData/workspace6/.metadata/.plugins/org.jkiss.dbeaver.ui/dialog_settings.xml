@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+    <section name="DBeaver.DriverTabbedViewer">
+    </section>
+    <section name="DBeaver.ActiveWizardDialog.NewConnectionWizard">
+        <item key="DIALOG_X_ORIGIN" value="190"/>
+        <item key="DIALOG_Y_ORIGIN" value="85"/>
+        <item key="DIALOG_WIDTH" value="943"/>
+        <item key="DIALOG_HEIGHT" value="632"/>
+        <item key="DIALOG_FONT_NAME" value="1|Cantarell|11.0|0|GTK|1|"/>
+    </section>
+    <section name="DBeaver.ShowTipOfTheDayDialog">
+        <item key="DIALOG_X_ORIGIN" value="690"/>
+        <item key="DIALOG_Y_ORIGIN" value="179"/>
+        <item key="DIALOG_WIDTH" value="371"/>
+        <item key="DIALOG_HEIGHT" value="543"/>
+        <item key="DIALOG_FONT_NAME" value="1|Cantarell|11.0|0|GTK|1|"/>
+    </section>
+</section>

@@ -1,0 +1,10 @@
+{
+  "insecure-registries": ["192.168.49.2/16"],
+  "default-ulimits": {
+    "nofile": {
+      "Hard": 4000000,
+      "Name": "nofile",
+      "Soft": 4000000
+    }
+  }
+}

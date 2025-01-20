@@ -1,0 +1,7 @@
+ENTRY "/ws" URL "/ws"
+ENTRY "/tmp" URL "/tmp"
+ENTRY "/home/user" URL "/home/user"
+ENTRY "/repository" URL "/repository"
+ENTRY "/media/sf_ws" URL "/media/sf_ws"
+ENTRY "/media/sf_documents" URL "/media/sf_documents"
+ENTRY "/media/sf_onedrive" URL "/media/sf_onedrive"

@@ -1,0 +1,9 @@
+<application>
+  <component name="FileTypeManager" version="19">
+    <extensionMap>
+      <mapping pattern="Dockerfile.*" type="Dockerfile" />
+      <mapping ext="tmpl" type="Go Template" />
+      <mapping ext="tpl" type="Go Template" />
+    </extensionMap>
+  </component>
+</application>

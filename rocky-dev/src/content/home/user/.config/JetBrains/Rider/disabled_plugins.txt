@@ -1,0 +1,3 @@
+com.jetbrains.gateway
+intellij.rider.plugins.cwm
+org.jetbrains.plugins.docker.gateway

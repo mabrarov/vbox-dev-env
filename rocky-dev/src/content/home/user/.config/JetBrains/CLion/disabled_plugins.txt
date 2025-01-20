@@ -1,0 +1,4 @@
+com.jetbrains.codeWithMe
+com.jetbrains.gateway
+org.jetbrains.plugins.cidr-intelliLang
+org.jetbrains.plugins.docker.gateway

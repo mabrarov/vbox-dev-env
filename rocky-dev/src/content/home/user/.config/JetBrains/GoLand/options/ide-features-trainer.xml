@@ -1,0 +1,10 @@
+<application>
+  <component name="LessonStateBase">
+    <option name="map">
+      <map>
+        <entry key="go.onboarding.tour" value="PASSED" />
+        <entry key="idea.onboarding" value="PASSED" />
+      </map>
+    </option>
+  </component>
+</application>

@@ -1,0 +1,10 @@
+{
+  "editor.renderWhitespace": "all",
+  "editor.fontLigatures": false,
+  "files.autoSave": "onFocusChange",
+  "files.trimTrailingWhitespace": true,
+  "http.proxy": "",
+  "http.proxyStrictSSL": true,
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false
+}

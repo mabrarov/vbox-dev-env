@@ -1,0 +1,6 @@
+/.idea/
+/dev/.vagrant/
+/rocky-dev/*.ova
+/rocky-dev/packer_cache/
+/rocky-dev/output-virtualbox-iso/
+/rocky-dev/output/

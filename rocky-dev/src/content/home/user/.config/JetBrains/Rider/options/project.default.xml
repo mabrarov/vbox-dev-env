@@ -1,0 +1,23 @@
+<application>
+  <component name="ProjectManager">
+    <defaultProject>
+      <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "go.import.settings.migrated": "true",
+    "settings.editor.selected.configurable": "preferences.general"
+  }
+}]]></component>
+      <component name="TaskManager">
+        <task active="true" id="Default" summary="Default task">
+          <created>1726920788259</created>
+          <option name="number" value="Default" />
+          <option name="presentableId" value="Default" />
+          <updated>1726920788259</updated>
+          <workItem from="1726920789429" duration="16000" />
+        </task>
+        <servers />
+      </component>
+      <component name="VcsDirectoryMappings" defaultProject="true" />
+    </defaultProject>
+  </component>
+</application>
