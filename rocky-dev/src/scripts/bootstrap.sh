@@ -411,7 +411,7 @@ if [[ ! -e "${idea_home}" ]]; then
     curl -sLf -o "${idea_dist}" "https://download.jetbrains.com/idea/${idea_fname}"
   fi
   tar -zxf "${idea_dist}" -C "${opt_bin_dir}"
-  mv "$(find /opt -maxdepth 1 -name "idea*" -type d)" "${idea_home}"
+  mv "$(find "${opt_bin_dir}" -maxdepth 1 -name "idea*" -type d)" "${idea_home}"
   ln -s "${idea_home}/bin/idea" "${usr_local_bin_dir}/idea"
   sed -i -r 's/-Xms.+m/-Xms512m/' "${idea_home}/bin/idea64.vmoptions"
   sed -i -r 's/-Xmx.+m/-Xmx4096m/' "${idea_home}/bin/idea64.vmoptions"
@@ -476,7 +476,7 @@ if [[ ! -e "${rider_home}" ]]; then
     curl -sLf -o "${rider_dist}" "https://download.jetbrains.com/rider/${rider_fname}"
   fi
   tar -zxf "${rider_dist}" -C "${opt_bin_dir}"
-  mv "$(find /opt -maxdepth 1 -name "JetBrains*Rider*" -type d)" "${rider_home}"
+  mv "$(find "${opt_bin_dir}" -maxdepth 1 -name "JetBrains*Rider*" -type d)" "${rider_home}"
   ln -s "${rider_home}/bin/rider" "${usr_local_bin_dir}/rider"
   sed -i -r 's/-Xms.+m/-Xms512m/' "${rider_home}/bin/rider64.vmoptions"
   sed -i -r 's/-Xmx.+m/-Xmx4096m/' "${rider_home}/bin/rider64.vmoptions"
@@ -526,7 +526,7 @@ if [[ ! -e "${goland_home}" ]]; then
     curl -sLf -o "${goland_dist}" "https://download.jetbrains.com/go/${goland_fname}"
   fi
   tar -zxf "${goland_dist}" -C "${opt_bin_dir}"
-  mv "$(find /opt -maxdepth 1 -name "GoLand*" -type d)" "${goland_home}"
+  mv "$(find "${opt_bin_dir}" -maxdepth 1 -name "GoLand*" -type d)" "${goland_home}"
   ln -s "${goland_home}/bin/goland" "${usr_local_bin_dir}/goland"
   sed -i -r 's/-Xms.+m/-Xms512m/' "${goland_home}/bin/goland64.vmoptions"
   sed -i -r 's/-Xmx.+m/-Xmx4096m/' "${goland_home}/bin/goland64.vmoptions"
@@ -573,7 +573,7 @@ if [[ ! -e "${clion_home}" ]]; then
     curl -sLf -o "${clion_dist}" "https://download.jetbrains.com/cpp/${clion_fname}"
   fi
   tar -zxf "${clion_dist}" -C "${opt_bin_dir}"
-  mv "$(find /opt -maxdepth 1 -name "clion*" -type d)" "${clion_home}"
+  mv "$(find "${opt_bin_dir}" -maxdepth 1 -name "clion*" -type d)" "${clion_home}"
   ln -s "${clion_home}/bin/clion" "${usr_local_bin_dir}/clion"
   sed -i -r 's/-Xms.+m/-Xms512m/' "${clion_home}/bin/clion64.vmoptions"
   sed -i -r 's/-Xmx.+m/-Xmx4096m/' "${clion_home}/bin/clion64.vmoptions"
