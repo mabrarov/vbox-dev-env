@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Headlamp
+Icon=/opt/headlamp/headlamp.svg
+Exec="/opt/headlamp/headlamp" %f
+Comment=User-friendly Kubernetes UI focused on extensibility
+Categories=Development
+Terminal=false
+StartupNotify=true

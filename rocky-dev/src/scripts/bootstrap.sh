@@ -78,6 +78,7 @@ helmfile_version="0.169.2"
 shellcheck_version="0.10.0"
 dbeaver_version="24.3.2"
 yq_version="4.44.6"
+headlamp_version="0.27.0"
 
 intellij_idea_version="2024.2.3"
 rider_version="2024.2.6"
@@ -998,6 +999,26 @@ if ! which yq &>/dev/null; then
   mv "$(dirname "${yq_file}")/${yq_filename}_${yq_platform}" "${yq_file}"
   chmod a+x "${yq_file}"
   chown root:root "${yq_file}"
+fi
+
+# Headlamp (https://headlamp.dev/)
+headlamp_home="${opt_bin_dir}/headlamp"
+if [[ ! -e "${headlamp_home}" ]]; then
+  echo "=== Installing Headlamp"
+  headlamp_fname="Headlamp-${headlamp_version}-linux-x64.tar.gz"
+  headlamp_dist="${CACHE_DIR}/${headlamp_fname}"
+  if [[ ! -f "${headlamp_dist}" ]]; then
+    curl -sLf -o "${headlamp_dist}" "https://github.com/headlamp-k8s/headlamp/releases/download/v${headlamp_version}/${headlamp_fname}"
+  fi
+  tar -zxf "${headlamp_dist}" -C "${opt_bin_dir}"
+  mv "$(find "${opt_bin_dir}" -maxdepth 1 -name "Headlamp*" -type d)" "${headlamp_home}"
+  cp --no-preserve=all "${PROVISION_CONTENT_DIR}/opt/headlamp/headlamp.svg" "${headlamp_home}"
+  chown -R root:root "${opt_bin_dir}/headlamp"
+fi
+
+if ! which lens-desktop &>/dev/null; then
+  dnf config-manager -y --add-repo https://downloads.k8slens.dev/rpm/lens.repo
+  dnf install -y lens
 fi
 
 # Change host name to avoid resolution of host name (default is localhost.localdomain) to 127.0.0.1
