@@ -1,13 +1,7 @@
 <application>
   <component name="ProjectManager">
     <defaultProject>
-      <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "go.import.settings.migrated": "true",
-    "settings.editor.selected.configurable": "editor.preferences.appearance"
-  }
-}]]></component>
-      <component name="VcsDirectoryMappings" defaultProject="true" />
+      <component name="GOROOT" url="file:///opt/go" />
     </defaultProject>
   </component>
 </application>
