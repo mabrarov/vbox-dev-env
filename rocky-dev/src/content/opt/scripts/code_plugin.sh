@@ -22,4 +22,4 @@ while true; do
   sleep 10s
 done
 
-find /tmp -maxdepth 1 -regex ".*\/[0-9a-z]+-[0-9a-z]+-[0-9a-z]+-[0-9a-z]+-[0-9a-z]+" -exec rm -f {} +
+find /tmp -maxdepth 1 -type f -regex ".*\/[0-9a-z]+-[0-9a-z]+-[0-9a-z]+-[0-9a-z]+-[0-9a-z]+" -exec rm -f {} +
