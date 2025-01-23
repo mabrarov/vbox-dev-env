@@ -31,7 +31,7 @@ All paths given in this README are relative to the directory where this README i
     This file can be downloaded automatically during building Vagrant box if VPN is used.
     Otherwise, find the name of file in [src/scripts/bootstrap.sh](src/scripts/bootstrap.sh) and place that file manually.
 1. Place [JetBrains plugins](https://plugins.jetbrains.com/) archive files in [cache](cache) directory.
-    Some of these files can be downloaded automatically during building Vagrant box if VPN is used.
+    These files can be downloaded automatically during building Vagrant box if VPN is used.
     The set of archive files (and download URLs) which need to be placed can be found in [src/scripts/bootstrap.sh](src/scripts/bootstrap.sh).
 1. Run
     ```bash

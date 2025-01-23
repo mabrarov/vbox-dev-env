@@ -436,8 +436,8 @@ fi
 # IntelliJ IDEA plugins
 idea_plugin_dir="${user_home_dir}/.local/share/JetBrains/IntelliJIdea"
 # AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
-install_jetbrains_plugin "${idea_plugin_dir}" "asciidoctor-intellij-plugin-0.43.3.zip" \
-  "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.3.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7391/658997/asciidoctor-intellij-plugin-0.43.6.zip"
 # Go (https://plugins.jetbrains.com/plugin/9568-go)
 install_jetbrains_plugin "${idea_plugin_dir}" "go-plugin-242.23339.11.zip" \
   "https://plugins.jetbrains.com/files/9568/608453/go-plugin-242.23339.11.zip"
@@ -463,9 +463,8 @@ install_jetbrains_plugin "${idea_plugin_dir}" "python-242.23339.11.zip" \
 install_jetbrains_plugin "${idea_plugin_dir}" "ruby-242.23339.11.zip" \
   "https://plugins.jetbrains.com/files/1293/608457/ruby-242.23339.11.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
-# Modified to support modern versions of IntelliJ IDEA
-# Original from https://plugins.jetbrains.com/files/10066/483798/StringToolsPlugin-4.1.zip
-install_jetbrains_plugin "${idea_plugin_dir}" "StringToolsPlugin-4.1-modified_for_new_idea.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "StringToolsPlugin-4.22.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
 install_jetbrains_plugin "${idea_plugin_dir}" "terraform-242.23339.11.zip" \
   "https://downloads.marketplace.jetbrains.com/files/7808/608451/terraform-242.23339.11.zip"
@@ -501,8 +500,8 @@ fi
 # JetBrains Rider plugins
 rider_plugin_dir="${user_home_dir}/.local/share/JetBrains/Rider"
 # AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
-install_jetbrains_plugin "${rider_plugin_dir}" "asciidoctor-intellij-plugin-0.43.3.zip" \
-  "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.3.zip"
+install_jetbrains_plugin "${rider_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
+  "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.6.zip"
 # Go Template (https://plugins.jetbrains.com/plugin/10581-go-template)
 install_jetbrains_plugin "${rider_plugin_dir}" "go-template-242.20224.155.zip" \
   "https://plugins.jetbrains.com/files/10581/579434/go-template-242.20224.155.zip"
@@ -513,9 +512,8 @@ install_jetbrains_plugin "${rider_plugin_dir}" "makefile-242.20224.155.zip" \
 install_jetbrains_plugin "${rider_plugin_dir}" "PowerShell-2.8.0.zip" \
   "https://plugins.jetbrains.com/files/10249/621620/PowerShell-2.8.0.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
-# Modified to support modern versions of IntelliJ IDEA
-# Original from https://plugins.jetbrains.com/files/10066/483798/StringToolsPlugin-4.1.zip
-install_jetbrains_plugin "${rider_plugin_dir}" "StringToolsPlugin-4.1-modified_for_new_idea.zip"
+install_jetbrains_plugin "${rider_plugin_dir}" "StringToolsPlugin-4.22.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
 install_jetbrains_plugin "${rider_plugin_dir}" "terraform-242.23339.11.zip" \
   "https://downloads.marketplace.jetbrains.com/files/7808/608451/terraform-242.23339.11.zip"
@@ -551,8 +549,8 @@ fi
 # GoLand plugins
 goland_plugin_dir="${user_home_dir}/.local/share/JetBrains/GoLand"
 # AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
-install_jetbrains_plugin "${goland_plugin_dir}" "asciidoctor-intellij-plugin-0.43.3.zip" \
-  "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.3.zip"
+install_jetbrains_plugin "${goland_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
+  "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.6.zip"
 # Batch Scripts Support (https://plugins.jetbrains.com/plugin/265-batch-scripts-support)
 install_jetbrains_plugin "${goland_plugin_dir}" "idea-batch-1.0.13.zip" \
   "https://plugins.jetbrains.com/files/265/148140/idea-batch-1.0.13.zip"
@@ -560,9 +558,8 @@ install_jetbrains_plugin "${goland_plugin_dir}" "idea-batch-1.0.13.zip" \
 install_jetbrains_plugin "${goland_plugin_dir}" "PowerShell-2.8.0.zip" \
   "https://plugins.jetbrains.com/files/10249/621620/PowerShell-2.8.0.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
-# Modified to support modern versions of IntelliJ IDEA
-# Original from https://plugins.jetbrains.com/files/10066/483798/StringToolsPlugin-4.1.zip
-install_jetbrains_plugin "${goland_plugin_dir}" "StringToolsPlugin-4.1-modified_for_new_idea.zip"
+install_jetbrains_plugin "${goland_plugin_dir}" "StringToolsPlugin-4.22.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
 install_jetbrains_plugin "${goland_plugin_dir}" "terraform-242.23339.11.zip" \
   "https://downloads.marketplace.jetbrains.com/files/7808/608451/terraform-242.23339.11.zip"
@@ -598,8 +595,8 @@ fi
 # CLion plugins
 clion_plugin_dir="${user_home_dir}/.local/share/JetBrains/CLion"
 # AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
-install_jetbrains_plugin "${clion_plugin_dir}" "asciidoctor-intellij-plugin-0.43.3.zip" \
-  "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.3.zip"
+install_jetbrains_plugin "${clion_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
+  "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.6.zip"
 # Kubernetes (https://plugins.jetbrains.com/plugin/10485-kubernetes)
 install_jetbrains_plugin "${clion_plugin_dir}" "clouds-kubernetes-242.22855.92.zip" \
   "https://plugins.jetbrains.com/files/10485/605758/clouds-kubernetes-242.22855.92.zip"
@@ -610,9 +607,8 @@ install_jetbrains_plugin "${clion_plugin_dir}" "go-template-242.20224.155.zip" \
 install_jetbrains_plugin "${clion_plugin_dir}" "PowerShell-2.8.0.zip" \
   "https://plugins.jetbrains.com/files/10249/621620/PowerShell-2.8.0.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
-# Modified to support modern versions of IntelliJ IDEA
-# Original from https://plugins.jetbrains.com/files/10066/483798/StringToolsPlugin-4.1.zip
-install_jetbrains_plugin "${clion_plugin_dir}" "StringToolsPlugin-4.1-modified_for_new_idea.zip"
+install_jetbrains_plugin "${clion_plugin_dir}" "StringToolsPlugin-4.22.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
 
 if ! which node &>/dev/null; then
   echo "=== Installing NodeJS"
