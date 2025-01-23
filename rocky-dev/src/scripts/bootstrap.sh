@@ -65,6 +65,7 @@ groovy_version="4.0.24"
 groovy_home="${opt_bin_dir}/groovy"
 
 golang_version="1.23.4"
+golang_home="${opt_bin_dir}/go"
 
 docker_compose_version="2.32.1"
 kubectl_version="1.32.0"
@@ -100,9 +101,11 @@ chmod 644 "${etc_profile_env_script}"
 # shellcheck disable=SC2129
 echo "export ANT_HOME=$(printf "%q" "${ANT_HOME}")" >>"${etc_profile_env_script}"
 echo "export DOCKER_TLS_VERIFY=" >>"${etc_profile_env_script}"
-echo "export PATH=$(printf "%q" "${gradle_home}/bin"):$(printf "%q" "${M2_HOME}/bin"):$(printf "%q" "${ANT_HOME}/bin"):$(printf "%q" "${JAVA_HOME}/bin"):$(printf "%q" "${groovy_home}/bin"):\${PATH}" >>"${etc_profile_env_script}"
+echo "export PATH=$(printf "%q" "${gradle_home}/bin"):$(printf "%q" "${M2_HOME}/bin"):$(printf "%q" "${ANT_HOME}/bin"):$(printf "%q" "${JAVA_HOME}/bin"):$(printf "%q" "${groovy_home}/bin"):$(printf "%q" "${golang_home}/bin"):\${PATH}" >>"${etc_profile_env_script}"
 echo "export M2_HOME=$(printf "%q" "${M2_HOME}")" >>"${etc_profile_env_script}"
 echo "export MAVEN_OPTS=$(printf "%q" "${MAVEN_OPTS}")" >>"${etc_profile_env_script}"
+echo "export GOROOT=$(printf "%q" "${golang_home}")" >>"${etc_profile_env_script}"
+echo "export GOPATH=$(printf "%q" "/repository/go")" >>"${etc_profile_env_script}"
 
 # https://wiki.archlinux.org/title/Uniform_look_for_Qt_and_GTK_applications#Adwaita
 echo "export QT_STYLE_OVERRIDE=adwaita-dark" >>"${etc_profile_env_script}"
