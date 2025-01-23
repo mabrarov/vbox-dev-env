@@ -924,6 +924,11 @@ chmod 644 "${provision_certs_dir}"/*
 "${opt_bin_dir}/scripts/code_plugin.sh" 'HashiCorp.terraform'                         "${VM_USER}" 10
 "${opt_bin_dir}/scripts/code_plugin.sh" 'HashiCorp.HCL'                               "${VM_USER}" 10
 
+# Install .NET tools for VM_USER user
+sudo -H -i -u "${VM_USER}" dotnet tool install -g dotnet-reportgenerator-globaltool
+sudo -H -i -u "${VM_USER}" dotnet tool install -g CodeCoverageExtractor
+sudo -H -i -u "${VM_USER}" dotnet tool install -g dotnet-coverage
+
 chmod 755 "${user_home_dir}/.profile"
 chmod 755 "${user_home_dir}/.bash_aliases"
 chmod -R og-rwx "${user_home_dir}/.m2"
