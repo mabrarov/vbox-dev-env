@@ -215,7 +215,7 @@ update-crypto-policies --set "$(update-crypto-policies --show):CVE-2023-48795"
   'hidetopbar@mathieu.bidon.ca' \
   'https://extensions.gnome.org/extension-data/hidetopbarmathieu.bidon.ca.v114.shell-extension.zip' \
   "${CACHE_DIR}"
-# Just Perfection (https://extensions.gnome.org/extension/545/hide-top-bar/)
+# Just Perfection (https://extensions.gnome.org/extension/3843/just-perfection/)
 "${opt_bin_dir}/scripts/gnome_extension.sh" \
   'just-perfection-desktop@just-perfection' \
   'https://extensions.gnome.org/extension-data/just-perfection-desktopjust-perfection.v24.shell-extension.zip' \
