@@ -4,8 +4,10 @@
 
 1. [Oracle VirtualBox](https://www.virtualbox.org/) 7.1+.
 1. [HashiCorp Vagrant](https://developer.hashicorp.com/vagrant/install) 2.4.2+.
+1. All commands and paths assume current directory is the one where this README is located.
+1. All commands assume usage of Bash. Git Bash on Windows is tested and supported too.
 
-## Usage
+## Usage overview
 
 Additional virtual disks required by [Vagrantfile](Vagrantfile) can be found in [disks.zip](disks.zip).
 Vagrant looks for these additional disks at `%USERPROFILE%\VirtualBox VMs` directory when creating virtual machine,
@@ -75,3 +77,42 @@ MY_EMAIL="firstname.lastname@localdomain.local"
 # For US it could be: US/Eastern (other possible US timezones can be found in /usr/share/zoneinfo/US folder)
 MY_TIMEZONE="Europe/Moscow"
 ```
+
+## VM creation
+
+```bash
+vagrant up
+```
+
+## VM removal
+
+### VM removal using Vagrant
+
+Stop VM using Vagrant [halt](https://developer.hashicorp.com/vagrant/docs/cli/halt) command,
+unmount drives with persistent data using [umount.sh](umount.sh) script and destroy VM
+using Vagrant [destroy](https://developer.hashicorp.com/vagrant/docs/cli/destroy) command:
+
+```bash
+vagrant halt && ./umount.sh && vagrant destroy -f
+```
+
+### Manual VM removal
+
+Steps:
+
+1. Stop VM either using Vagrant [halt](https://developer.hashicorp.com/vagrant/docs/cli/halt) command:
+    ```bash
+    vagrant halt
+    ```
+    or using [VirtualBox Manager](https://www.virtualbox.org/manual/topics/Introduction.html#frontends).
+1. Unmount drives with persistent data using [umount.sh](umount.sh) script (or using [umount.bat](umount.bat) script for Windows Command Prompt):
+    ```bash
+    ./umount.sh
+    ```
+1. [Remove VM](https://www.virtualbox.org/manual/topics/Introduction.html#intro-removing) using
+    [VirtualBox Manager](https://www.virtualbox.org/manual/topics/Introduction.html#frontends).
+    Feel free to chose "Delete all files" or "Remove only" depending on desired result.
+1. Remove [.vagrant](.vagrant) directory to not confuse Vagrant next time it will be used:
+    ```bash
+    rm -rf .vagrant
+    ```
