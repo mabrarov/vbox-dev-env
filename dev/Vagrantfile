@@ -8,6 +8,7 @@ provision_content_destination_dir = "/tmp/dev"
 
 ws_host_dir = File.expand_path("~/ws")
 documents_host_dir = File.expand_path("~/Documents")
+downloads_host_dir = File.expand_path("~/Downloads")
 one_drive_host_dir = File.expand_path("~/OneDrive")
 
 vbox_default_vm_dir = File.expand_path("~/VirtualBox VMs")
@@ -70,14 +71,17 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--vrde", "off"]
 
     # Shared folders
-    if File.directory?(ws_host_dir)
-      vb.customize ["sharedfolder", "add", :id, "--name", "ws", "--hostpath", ws_host_dir, "--automount"]
-    end
     if File.directory?(documents_host_dir)
       vb.customize ["sharedfolder", "add", :id, "--name", "documents", "--hostpath", documents_host_dir, "--automount"]
     end
+    if File.directory?(downloads_host_dir)
+      vb.customize ["sharedfolder", "add", :id, "--name", "downloads", "--hostpath", downloads_host_dir, "--automount"]
+    end
     if File.directory?(one_drive_host_dir)
       vb.customize ["sharedfolder", "add", :id, "--name", "onedrive", "--hostpath", one_drive_host_dir, "--automount"]
+    end
+    if File.directory?(ws_host_dir)
+      vb.customize ["sharedfolder", "add", :id, "--name", "ws", "--hostpath", ws_host_dir, "--automount"]
     end
 
     # Attach ws.vmdk as 2nd HDD

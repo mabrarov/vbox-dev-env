@@ -38,9 +38,10 @@ These host folders are mapped into VM by VirtualBox (shared folders are created 
 
 | # | Host directory | Guest directory |
 |---|----------------|-----------------|
-| 1 | %USERPROFILE%\ws | /media/sf_ws |
-| 2 | %USERPROFILE%\Documents | /media/sf_documents |
+| 1 | %USERPROFILE%\Documents | /media/sf_documents |
+| 2 | %USERPROFILE%\Downloads | /media/sf_downloads |
 | 3 | %USERPROFILE%\OneDrive | /media/sf_onedrive |
+| 4 | %USERPROFILE%\ws | /media/sf_ws |
 
 Optional files for customization of virtual machine:
 
