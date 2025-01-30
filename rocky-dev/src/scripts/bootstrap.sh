@@ -181,7 +181,8 @@ dnf install -y \
   gnome-extensions-app \
   adwaita-qt5 \
   dbus-x11 \
-  dotnet-sdk-8.0
+  dotnet-sdk-8.0 \
+  bash-completion
 
 dnf config-manager --set-enabled devel
 dnf install -y xorg-x11-font-utils
@@ -965,8 +966,12 @@ if ! grep -m 1 -F '~/.bash_aliases' "${user_home_dir}/.bashrc" >/dev/null; then
   echo "if [[ -f ~/.bash_aliases ]]; then" >>"${user_home_dir}/.bashrc"
   echo "    source ~/.bash_aliases" >>"${user_home_dir}/.bashrc"
   echo "fi" >>"${user_home_dir}/.bashrc"
-  echo "source $(printf %q "${maven_bash_completion_script}")" >>"${user_home_dir}/.bashrc"
 fi
+
+# Bash completion for Maven
+echo "source $(printf %q "${maven_bash_completion_script}")" >>"${user_home_dir}/.bashrc"
+# Bash completion for kubectl
+echo 'source <(kubectl completion bash)' >>"${user_home_dir}/.bashrc"
 
 # Minikube
 if ! which minikube &>/dev/null; then
