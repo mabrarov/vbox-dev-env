@@ -227,7 +227,7 @@ update-crypto-policies --set "$(update-crypto-policies --show):CVE-2023-48795"
 pip3 install sshuttle
 
 # Grant "${VM_USER}" full access to VirtualBox shared folders
-usermod -aG vboxsf "${VM_USER}"
+#usermod -aG vboxsf "${VM_USER}"
 
 if ! which google-chrome-stable &>/dev/null; then
   echo "=== Installing Google Chrome"
