@@ -41,6 +41,7 @@ usr_local_dir="/usr/local"
 usr_local_bin_dir="${usr_local_dir}/bin"
 usr_local_share_dir="${usr_local_dir}/share"
 etc_profile_env_script="/etc/profile.d/localenv.sh"
+truetype_fonts_dir="/usr/share/fonts/truetype"
 
 provision_certs_dir="${PROVISION_CONTENT_DIR}/tmp/certs"
 provision_scripts_dir="${PROVISION_CONTENT_DIR}/tmp/scripts"
@@ -812,32 +813,42 @@ if [[ ! -e /usr/share/fonts/opentype/fira-code ]]; then
   fc-cache -f
 fi
 
-if [[ ! -e /usr/share/fonts/truetype/consolas ]]; then
+mkdir -p "${truetype_fonts_dir}"
+chown -R root:root "${truetype_fonts_dir}"
+chmod -R u=rwX,g=rwX,o=rX "${truetype_fonts_dir}"
+
+consolas_font_dir="${truetype_fonts_dir}/consolas"
+if [[ ! -e "${consolas_font_dir}" ]]; then
   echo "=== Installing font: Consolas"
-  mkdir -p /usr/share/fonts/truetype/consolas
-  mv -f "${PROVISION_CONTENT_DIR}/usr/share/fonts/truetype/consolas/" /usr/share/fonts/truetype/consolas/
-  chown -R root:root /usr/share/fonts/truetype/consolas
-  chmod 644 /usr/share/fonts/truetype/consolas/*
+  mkdir -p "${consolas_font_dir}"
+  cp --no-preserve=all "${PROVISION_CONTENT_DIR}/usr/share/fonts/truetype/consolas/" "${consolas_font_dir}"/
+  chown -R root:root "${consolas_font_dir}"
+  chmod -R u=rwX,g=rwX,o=rX "${consolas_font_dir}"
+  find "${consolas_font_dir}" -type f -exec chmod u=rw,g=rw,o=r {} +
   fc-cache -f
 fi
 
-if [[ ! -e /usr/share/fonts/truetype/fontawesome ]]; then
+fontawesome_font_dir="${truetype_fonts_dir}/fontawesome"
+if [[ ! -e "${fontawesome_font_dir}" ]]; then
   echo "=== Installing font: FontAwesome"
-  fname=Font-Awesome-4.7.0.zip
+  fname="Font-Awesome-4.7.0.zip"
   font_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${font_dist}" ]]; then
-    curl -sLf -o "${font_dist}" https://github.com/FortAwesome/Font-Awesome/archive/v4.7.0.zip
+    curl -sLf -o "${font_dist}" "https://github.com/FortAwesome/Font-Awesome/archive/v4.7.0.zip"
   fi
-  unzip -q "${font_dist}" -d /tmp/fontawesome
-  mkdir -p /usr/share/fonts/truetype/fontawesome
-  cp /tmp/fontawesome/*/fonts/*.ttf /usr/share/fonts/truetype/fontawesome
-  chown -R root:root /usr/share/fonts/truetype/fontawesome
-  chmod 644 /usr/share/fonts/truetype/fontawesome/*
-  rm -Rf /tmp/fontawesome
+  tmp_dir="$(mktemp -d)"
+  unzip -q "${font_dist}" -d "${tmp_dir}"
+  mkdir -p "${fontawesome_font_dir}"
+  cp --no-preserve=all "${tmp_dir}"/*/fonts/*.ttf "${fontawesome_font_dir}"
+  rm -rf "${tmp_dir}"
+  chown -R root:root "${fontawesome_font_dir}"
+  chmod -R u=rwX,g=rwX,o=rX "${fontawesome_font_dir}"
+  find "${fontawesome_font_dir}" -type f -exec chmod u=rw,g=rw,o=r {} +
   fc-cache -f
 fi
 
-if [[ ! -e /usr/share/fonts/truetype/jetbrainsmono ]]; then
+jetbrainsmono_font_dir="${truetype_fonts_dir}/jetbrainsmono"
+if [[ ! -e "${jetbrainsmono_font_dir}" ]]; then
   echo "=== Installing font: JetBrainsMono"
   font_url="$(curl -sLf https://www.jetbrains.com/lp/mono/ |
     grep -E "JetBrainsMono-[0-9\.]+\.zip" |
@@ -847,20 +858,20 @@ if [[ ! -e /usr/share/fonts/truetype/jetbrainsmono ]]; then
   if [[ ! -e "${font_dist}" ]]; then
     curl -sLf -o "${font_dist}" "${font_url}"
   fi
-  unzip -q "${font_dist}" -d /tmp/JetBrainsMono
-  mkdir -p /usr/share/fonts/truetype/jetbrainsmono
-  cp /tmp/JetBrainsMono/JetBrainsMono-*/ttf/*.ttf /usr/share/fonts/truetype/jetbrainsmono
-  chown -R root:root /usr/share/fonts/truetype/jetbrainsmono
-  chmod 644 /usr/share/fonts/truetype/jetbrainsmono/*
-  rm -Rf /tmp/JetBrainsMono
+  tmp_dir="$(mktemp -d)"
+  unzip -q "${font_dist}" -d "${tmp_dir}"
+  mkdir -p "${jetbrainsmono_font_dir}"
+  cp --no-preserve=all "${tmp_dir}"/JetBrainsMono-*/ttf/*.ttf "${jetbrainsmono_font_dir}"
+  rm -rf "${tmp_dir}"
+  chown -R root:root "${jetbrainsmono_font_dir}"
+  chmod -R u=rwX,g=rwX,o=rX "${jetbrainsmono_font_dir}"
+  find "${jetbrainsmono_font_dir}" -type f -exec chmod u=rw,g=rw,o=r {} +
   fc-cache -f
 fi
 
-if [[ ! -e /usr/share/fonts/truetype/msttcorefonts ]]; then
-  echo "=== Installing font: Microsoft fonts"
-  dnf install -y https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
-  fc-cache -f
-fi
+echo "=== Installing font: Microsoft fonts"
+dnf install -y https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+fc-cache -f
 
 if [[ ! -e "${opt_bin_dir}/dbeaver" ]]; then
   echo "=== Installing DBeaver"
