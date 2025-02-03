@@ -210,6 +210,12 @@ if ! grep -m 1 -E "$(escape_text_for_regex "${repository_disk_id}")\\s+$(escape_
 fi
 mount "${repository_disk_mount_path}"
 systemctl daemon-reload
+# Create directories for package managers to ensure they work as expected
+mkdir -p "${repository_disk_mount_path}/maven/repository"
+mkdir -p "${repository_disk_mount_path}/npm/npm-cache"
+mkdir -p "${repository_disk_mount_path}/go"
+mkdir -p "${repository_disk_mount_path}/nuget/packages"
+# Fix permissions
 chown "${MY_USER}:${VAGRANT_BOX_ALL_USERS_GROUP}" "${repository_disk_mount_path}"
 chmod 775 "${repository_disk_mount_path}"
 
