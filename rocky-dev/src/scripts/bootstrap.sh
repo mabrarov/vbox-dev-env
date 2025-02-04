@@ -104,11 +104,17 @@ chmod 644 "${etc_profile_env_script}"
 # shellcheck disable=SC2129
 echo "export ANT_HOME=$(printf "%q" "${ANT_HOME}")" >>"${etc_profile_env_script}"
 echo "export DOCKER_TLS_VERIFY=" >>"${etc_profile_env_script}"
-echo "export PATH=$(printf "%q" "${gradle_home}/bin"):$(printf "%q" "${M2_HOME}/bin"):$(printf "%q" "${ANT_HOME}/bin"):$(printf "%q" "${JAVA_HOME}/bin"):$(printf "%q" "${groovy_home}/bin"):$(printf "%q" "${golang_home}/bin"):\${PATH}" >>"${etc_profile_env_script}"
 echo "export M2_HOME=$(printf "%q" "${M2_HOME}")" >>"${etc_profile_env_script}"
 echo "export MAVEN_OPTS=$(printf "%q" "${MAVEN_OPTS}")" >>"${etc_profile_env_script}"
 echo "export GOROOT=$(printf "%q" "${golang_home}")" >>"${etc_profile_env_script}"
 echo "export GOPATH=$(printf "%q" "${repository_dir}/go")" >>"${etc_profile_env_script}"
+echo "pathmunge $(printf "%q" "${golang_home}/bin")" >>"${etc_profile_env_script}"
+echo "pathmunge $(printf "%q" "${groovy_home}/bin")" >>"${etc_profile_env_script}"
+echo "pathmunge $(printf "%q" "${JAVA_HOME}/bin")" >>"${etc_profile_env_script}"
+echo "pathmunge $(printf "%q" "${ANT_HOME}/bin")" >>"${etc_profile_env_script}"
+echo "pathmunge $(printf "%q" "${M2_HOME}/bin")" >>"${etc_profile_env_script}"
+echo "pathmunge $(printf "%q" "${gradle_home}/bin")" >>"${etc_profile_env_script}"
+echo "pathmunge $(printf "%q" "${repository_dir}/go/bin") after" >>"${etc_profile_env_script}"
 
 # https://wiki.archlinux.org/title/Uniform_look_for_Qt_and_GTK_applications#Adwaita
 echo "export QT_STYLE_OVERRIDE=adwaita-dark" >>"${etc_profile_env_script}"
@@ -316,7 +322,7 @@ if [[ ! -e "${java17_home}" ]]; then
   chown -R root:root "${java17_home}"
 fi
 
-if [[ ! -e "${opt_bin_dir}/go" ]]; then
+if [[ ! -e "${golang_home}" ]]; then
   echo "=== Installing Go"
   folder_name="go${golang_version}.linux-amd64.tar.gz"
   fname="go${golang_version}.linux-amd64.tar.gz"
@@ -325,7 +331,7 @@ if [[ ! -e "${opt_bin_dir}/go" ]]; then
     curl -sLf -o "${golang_dist}" "https://golang.org/dl/${fname}"
   fi
   tar -xzf "${golang_dist}" -C "${opt_bin_dir}"
-  chown -R root:root "${opt_bin_dir}/go"
+  chown -R root:root "${golang_home}"
 fi
 
 if [[ ! -e "${groovy_home}" ]]; then
