@@ -42,6 +42,7 @@ usr_local_bin_dir="${usr_local_dir}/bin"
 usr_local_share_dir="${usr_local_dir}/share"
 etc_profile_env_script="/etc/profile.d/localenv.sh"
 truetype_fonts_dir="/usr/share/fonts/truetype"
+repository_dir="/repository"
 
 provision_certs_dir="${PROVISION_CONTENT_DIR}/tmp/certs"
 provision_scripts_dir="${PROVISION_CONTENT_DIR}/tmp/scripts"
@@ -107,7 +108,7 @@ echo "export PATH=$(printf "%q" "${gradle_home}/bin"):$(printf "%q" "${M2_HOME}/
 echo "export M2_HOME=$(printf "%q" "${M2_HOME}")" >>"${etc_profile_env_script}"
 echo "export MAVEN_OPTS=$(printf "%q" "${MAVEN_OPTS}")" >>"${etc_profile_env_script}"
 echo "export GOROOT=$(printf "%q" "${golang_home}")" >>"${etc_profile_env_script}"
-echo "export GOPATH=$(printf "%q" "/repository/go")" >>"${etc_profile_env_script}"
+echo "export GOPATH=$(printf "%q" "${repository_dir}/go")" >>"${etc_profile_env_script}"
 
 # https://wiki.archlinux.org/title/Uniform_look_for_Qt_and_GTK_applications#Adwaita
 echo "export QT_STYLE_OVERRIDE=adwaita-dark" >>"${etc_profile_env_script}"
@@ -1059,6 +1060,14 @@ systemctl start redis
 
 dnf clean all --enablerepo=*
 rm -rf /var/cache/dnf
+
+rm -rf "${repository_dir}"
+mkdir -p "${repository_dir}/maven/repository"
+mkdir -p "${repository_dir}/npm/npm-cache"
+mkdir -p "${repository_dir}/go"
+mkdir -p "${repository_dir}/nuget/packages"
+chown -R "${VM_USER}:${VM_USER_GROUP}" "${repository_dir}"
+chmod u=rwX,g=rX,o=rX -R "${repository_dir}"
 
 # Remove temporary dirs
 rm -rf "${PROVISION_CONTENT_DIR}"
