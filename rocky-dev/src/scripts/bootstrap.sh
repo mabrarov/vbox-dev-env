@@ -355,9 +355,10 @@ if [[ ! -e "${ANT_HOME}" ]]; then
     curl -sLf -o "${ant_contrib_dist}" \
       "https://sourceforge.net/projects/ant-contrib/files/ant-contrib/${ant_contrib_version}/ant-contrib-${ant_contrib_version}-bin.tar.gz/download"
   fi
-  tar -xzf "${ant_contrib_dist}" -C /tmp
-  mv -f "/tmp/ant-contrib/ant-contrib-${ant_contrib_version}.jar" "${ANT_HOME}/lib"/
-  rm -rf /tmp/ant-contrib
+  tmp_dir="$(mktemp -d)"
+  tar -xzf "${ant_contrib_dist}" -C "${tmp_dir}"
+  mv "${tmp_dir}/ant-contrib/ant-contrib-${ant_contrib_version}.jar" "${ANT_HOME}/lib"/
+  rm -rf "${tmp_dir}"
   chown -R root:root "${ANT_HOME}"
 fi
 
