@@ -42,6 +42,7 @@ usr_local_bin_dir="${usr_local_dir}/bin"
 usr_local_share_dir="${usr_local_dir}/share"
 etc_profile_env_script="/etc/profile.d/localenv.sh"
 truetype_fonts_dir="/usr/share/fonts/truetype"
+repository_dir="/repository"
 
 provision_certs_dir="${PROVISION_CONTENT_DIR}/tmp/certs"
 provision_scripts_dir="${PROVISION_CONTENT_DIR}/tmp/scripts"
@@ -107,7 +108,7 @@ echo "export PATH=$(printf "%q" "${gradle_home}/bin"):$(printf "%q" "${M2_HOME}/
 echo "export M2_HOME=$(printf "%q" "${M2_HOME}")" >>"${etc_profile_env_script}"
 echo "export MAVEN_OPTS=$(printf "%q" "${MAVEN_OPTS}")" >>"${etc_profile_env_script}"
 echo "export GOROOT=$(printf "%q" "${golang_home}")" >>"${etc_profile_env_script}"
-echo "export GOPATH=$(printf "%q" "/repository/go")" >>"${etc_profile_env_script}"
+echo "export GOPATH=$(printf "%q" "${repository_dir}/go")" >>"${etc_profile_env_script}"
 
 # https://wiki.archlinux.org/title/Uniform_look_for_Qt_and_GTK_applications#Adwaita
 echo "export QT_STYLE_OVERRIDE=adwaita-dark" >>"${etc_profile_env_script}"
@@ -282,7 +283,7 @@ if [[ ! -e "${java8_home}" ]]; then
     curl -sLf -o "${jdk_dist}" "https://cdn.azul.com/zulu/bin/${fname}"
   fi
   tar -xzf "${jdk_dist}" -C "${opt_bin_dir}"
-  mv -f "${opt_bin_dir}/${folder_name}" "${java8_home}"
+  mv "${opt_bin_dir}/${folder_name}" "${java8_home}"
   chown -R root:root "${java8_home}"
   sed -i -r 's/^([^#]+?[ =,])anon,?([ $])/\1\2/' "${java8_home}/jre/lib/security/java.security"
 fi
@@ -297,7 +298,7 @@ if [[ ! -e "${java11_home}" ]]; then
     curl -sLf -o "${jdk_dist}" "https://cdn.azul.com/zulu/bin/${fname}"
   fi
   tar -xzf "${jdk_dist}" -C "${opt_bin_dir}"
-  mv -f "${opt_bin_dir}/${folder_name}" "${java11_home}"
+  mv "${opt_bin_dir}/${folder_name}" "${java11_home}"
   chown -R root:root "${java11_home}"
 fi
 
@@ -311,7 +312,7 @@ if [[ ! -e "${java17_home}" ]]; then
     curl -sLf -o "${jdk_dist}" "https://cdn.azul.com/zulu/bin/${fname}"
   fi
   tar -xzf "${jdk_dist}" -C "${opt_bin_dir}"
-  mv -f "${opt_bin_dir}/${folder_name}" "${java17_home}"
+  mv "${opt_bin_dir}/${folder_name}" "${java17_home}"
   chown -R root:root "${java17_home}"
 fi
 
@@ -336,7 +337,7 @@ if [[ ! -e "${groovy_home}" ]]; then
       "https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/${fname}"
   fi
   unzip -q "${groovy_dist}" -d "${opt_bin_dir}"
-  mv -f "${opt_bin_dir}/groovy-${groovy_version}" "${groovy_home}"
+  mv "${opt_bin_dir}/groovy-${groovy_version}" "${groovy_home}"
   chown -R root:root "${groovy_home}"
 fi
 
@@ -348,16 +349,17 @@ if [[ ! -e "${ANT_HOME}" ]]; then
       "http://mirror.linux-ia64.org/apache//ant/binaries/apache-ant-${ant_version}-bin.tar.gz"
   fi
   tar -xzf "${ant_dist}" -C "${opt_bin_dir}"
-  mv -f "${opt_bin_dir}/apache-ant-${ant_version}" "${ANT_HOME}"
+  mv "${opt_bin_dir}/apache-ant-${ant_version}" "${ANT_HOME}"
   echo "=== Installing Ant-Contrib Tasks"
   ant_contrib_dist="${CACHE_DIR}/ant-contrib-${ant_contrib_version}-bin.tar.gz"
   if [[ ! -e "${ant_contrib_dist}" ]]; then
     curl -sLf -o "${ant_contrib_dist}" \
       "https://sourceforge.net/projects/ant-contrib/files/ant-contrib/${ant_contrib_version}/ant-contrib-${ant_contrib_version}-bin.tar.gz/download"
   fi
-  tar -xzf "${ant_contrib_dist}" -C /tmp
-  mv -f "/tmp/ant-contrib/ant-contrib-${ant_contrib_version}.jar" "${ANT_HOME}/lib"/
-  rm -rf /tmp/ant-contrib
+  tmp_dir="$(mktemp -d)"
+  tar -xzf "${ant_contrib_dist}" -C "${tmp_dir}"
+  mv "${tmp_dir}/ant-contrib/ant-contrib-${ant_contrib_version}.jar" "${ANT_HOME}/lib"/
+  rm -rf "${tmp_dir}"
   chown -R root:root "${ANT_HOME}"
 fi
 
@@ -369,7 +371,7 @@ if [[ ! -e "${M2_HOME}" ]]; then
       "http://mirror.reverse.net/pub/apache/maven/maven-$(echo "${maven_version}" | sed -r 's/([0-9]+)\..*/\1/')/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz"
   fi
   tar -xzf "${maven_dist}" -C "${opt_bin_dir}"
-  mv -f "${opt_bin_dir}/apache-maven-${maven_version}" "${M2_HOME}"
+  mv "${opt_bin_dir}/apache-maven-${maven_version}" "${M2_HOME}"
   chown -R root:root "${M2_HOME}"
 fi
 
@@ -404,7 +406,7 @@ if [[ ! -e "${gradle_home}" ]]; then
   if [[ "${gradle_version_minor:-0}" -ne 0 ]]; then
     gradle_unpack_dir_name="${gradle_unpack_dir_name}.${gradle_version_minor}"
   fi
-  mv -f "${opt_bin_dir}/${gradle_unpack_dir_name}" "${gradle_home}"
+  mv "${opt_bin_dir}/${gradle_unpack_dir_name}" "${gradle_home}"
   chown -R root:root "${gradle_home}"
 fi
 
@@ -433,7 +435,7 @@ idea.log.path=\${idea.system.path}/log
 
   # Make IntelliJ IDEA trusting certificates issued by custom CA for the case when VPN / AV sniffs traffic
   import_ca_cert_into_intellij_idea "${user_home_dir}/.config/JetBrains/IntelliJIdea" \
-    "test-ca" "${provision_certs_dir}/test-ca.crt"
+    "ru-root-ca" "${provision_certs_dir}/ru-root-ca.crt"
 fi
 
 # IntelliJ IDEA plugins
@@ -497,7 +499,7 @@ idea.log.path=\${idea.system.path}/log
 
   # Make JetBrains Rider trusting certificates issued by custom CA for the case when VPN / AV sniffs traffic
   import_ca_cert_into_intellij_idea "${user_home_dir}/.config/JetBrains/Rider" \
-    "test-ca" "${provision_certs_dir}/test-ca.crt"
+    "ru-root-ca" "${provision_certs_dir}/ru-root-ca.crt"
 fi
 
 # JetBrains Rider plugins
@@ -546,7 +548,7 @@ idea.log.path=\${idea.system.path}/log
 
   # Make GoLand trusting certificates issued by custom CA for the case when VPN / AV sniffs traffic
   import_ca_cert_into_intellij_idea "${user_home_dir}/.config/JetBrains/GoLand" \
-    "test-ca" "${provision_certs_dir}/test-ca.crt"
+    "ru-root-ca" "${provision_certs_dir}/ru-root-ca.crt"
 fi
 
 # GoLand plugins
@@ -592,7 +594,7 @@ idea.log.path=\${idea.system.path}/log
 
   # Make CLion trusting certificates issued by custom CA for the case when VPN / AV sniffs traffic
   import_ca_cert_into_intellij_idea "${user_home_dir}/.config/JetBrains/CLion" \
-    "test-ca" "${provision_certs_dir}/test-ca.crt"
+    "ru-root-ca" "${provision_certs_dir}/ru-root-ca.crt"
 fi
 
 # CLion plugins
@@ -659,13 +661,15 @@ EOF
 
   docker_config_dir="/etc/docker"
   mkdir -p "${docker_config_dir}"
-  mv -f "${PROVISION_CONTENT_DIR}/etc/docker/daemon.json" "${docker_config_dir}"/
+  cp --no-preserve=all -f "${PROVISION_CONTENT_DIR}/etc/docker/daemon.json" "${docker_config_dir}"/
 
-  docker_cert_dir="${docker_config_dir}/certs.d"
-  mkdir -p "${docker_cert_dir}"
-  docker_local_cert_dir="${docker_cert_dir}/docker.local:5000"
-  mkdir -p "${docker_local_cert_dir}"
-  mv -f "${PROVISION_CONTENT_DIR}/etc/docker/certs.d/docker.local/registry.crt" "${docker_local_cert_dir}/registry.crt"
+  if [[ -f "${PROVISION_CONTENT_DIR}/etc/docker/certs.d/docker.local/registry.crt" ]]; then
+    docker_cert_dir="${docker_config_dir}/certs.d"
+    mkdir -p "${docker_cert_dir}"
+    docker_local_cert_dir="${docker_cert_dir}/docker.local:5000"
+    mkdir -p "${docker_local_cert_dir}"
+    cp --no-preserve=all -f "${PROVISION_CONTENT_DIR}/etc/docker/certs.d/docker.local/registry.crt" "${docker_local_cert_dir}/registry.crt"
+  fi
 
   chown -R root:root "${docker_config_dir}"
   chmod -R u=rwX,g=rX,o=rX "${docker_config_dir}"
@@ -673,7 +677,7 @@ EOF
 
   docker_systemd_service_dir="/etc/systemd/system/docker.service.d"
   mkdir -p "${docker_systemd_service_dir}"
-  mv -f "${PROVISION_CONTENT_DIR}/etc/systemd/system/docker.service.d/docker.service.conf" "${docker_systemd_service_dir}/override.conf"
+  cp --no-preserve=all -f "${PROVISION_CONTENT_DIR}/etc/systemd/system/docker.service.d/docker.service.conf" "${docker_systemd_service_dir}/override.conf"
   chown -R root:root "${docker_systemd_service_dir}"
   chmod -R u=rwX,g=rX,o=rX "${docker_systemd_service_dir}"
   systemctl daemon-reload
@@ -821,7 +825,7 @@ consolas_font_dir="${truetype_fonts_dir}/consolas"
 if [[ ! -e "${consolas_font_dir}" ]]; then
   echo "=== Installing font: Consolas"
   mkdir -p "${consolas_font_dir}"
-  cp --no-preserve=all "${PROVISION_CONTENT_DIR}/usr/share/fonts/truetype/consolas"/. "${consolas_font_dir}"
+  cp --no-preserve=all -r "${PROVISION_CONTENT_DIR}/usr/share/fonts/truetype/consolas"/. "${consolas_font_dir}"
   chown -R root:root "${consolas_font_dir}"
   chmod -R u=rwX,g=rwX,o=rX "${consolas_font_dir}"
   find "${consolas_font_dir}" -type f -exec chmod u=rw,g=rw,o=r {} +
@@ -955,14 +959,19 @@ find "${user_home_dir}/.config/JetBrains/CLion" -type f -exec chmod a-x {} +
 chown -R "${VM_USER}:${VM_USER_GROUP}" "${user_home_dir}"
 
 root_home="/root"
-root_npm_dir="${root_home}/.npm"
 root_npm_config="${root_home}/.npmrc"
-cp -f "${user_home_dir}/.npmrc" "${root_npm_config}"
-chown root:root "${root_npm_config}"
-chmod u=rwX,g=rX,o=rX "${root_npm_config}"
-cp -Rf "${user_home_dir}/.npm" "${root_home}"
-chown -R root:root "${root_npm_dir}"
-chmod -R u=rwX,g=rX,o=rX "${root_npm_dir}"
+if [[ -f "${user_home_dir}/.npmrc" ]]; then
+  cp -f "${user_home_dir}/.npmrc" "${root_npm_config}"
+  chown root:root "${root_npm_config}"
+  chmod u=rwX,g=rX,o=rX "${root_npm_config}"
+fi
+root_npm_dir="${root_home}/.npm"
+if [[ -d "${user_home_dir}/.npm" ]]; then
+  mkdir -p "${root_npm_dir}"
+  cp -Rf "${user_home_dir}/.npm"/. "${root_npm_dir}"/
+  chown -R root:root "${root_npm_dir}"
+  chmod -R u=rwX,g=rX,o=rX "${root_npm_dir}"
+fi
 npm install -g @angular/cli
 
 sudo -H -i -u "${VM_USER}" dbus-launch "${provision_scripts_dir}/user_settings.sh"
@@ -1051,6 +1060,14 @@ systemctl start redis
 
 dnf clean all --enablerepo=*
 rm -rf /var/cache/dnf
+
+rm -rf "${repository_dir}"
+mkdir -p "${repository_dir}/maven/repository"
+mkdir -p "${repository_dir}/npm/npm-cache"
+mkdir -p "${repository_dir}/go"
+mkdir -p "${repository_dir}/nuget/packages"
+chown -R "${VM_USER}:${VM_USER_GROUP}" "${repository_dir}"
+chmod u=rwX,g=rX,o=rX -R "${repository_dir}"
 
 # Remove temporary dirs
 rm -rf "${PROVISION_CONTENT_DIR}"

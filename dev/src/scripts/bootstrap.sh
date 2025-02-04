@@ -193,8 +193,8 @@ if ! grep -m 1 -E "$(escape_text_for_regex "${ws_disk_fstab_id}")\\s+$(escape_te
 fi
 mount "${ws_disk_mount_path}"
 systemctl daemon-reload
-chown "${MY_USER}:${VAGRANT_BOX_ALL_USERS_GROUP}" "${ws_disk_mount_path}"
-chmod 775 "${ws_disk_mount_path}"
+chown -R "${MY_USER}:${VAGRANT_BOX_ALL_USERS_GROUP}" "${ws_disk_mount_path}"
+chmod -R 775 "${ws_disk_mount_path}"
 
 # Refer to https://gist.github.com/leifg/4713995?permalink_comment_id=1615625#gistcomment-1615625
 # for details about the way disk ID is generated and can be determined from respective VMDK file
@@ -216,8 +216,8 @@ mkdir -p "${repository_disk_mount_path}/npm/npm-cache"
 mkdir -p "${repository_disk_mount_path}/go"
 mkdir -p "${repository_disk_mount_path}/nuget/packages"
 # Fix permissions
-chown "${MY_USER}:${VAGRANT_BOX_ALL_USERS_GROUP}" "${repository_disk_mount_path}"
-chmod 775 "${repository_disk_mount_path}"
+chown -R "${MY_USER}:${VAGRANT_BOX_ALL_USERS_GROUP}" "${repository_disk_mount_path}"
+chmod -R 775 "${repository_disk_mount_path}"
 
 # Refer to https://gist.github.com/leifg/4713995?permalink_comment_id=1615625#gistcomment-1615625
 # for details about the way disk ID is generated and can be determined from respective VMDK file
