@@ -40,7 +40,7 @@ opt_bin_dir="/opt"
 usr_local_dir="/usr/local"
 usr_local_bin_dir="${usr_local_dir}/bin"
 usr_local_share_dir="${usr_local_dir}/share"
-etc_profile_env_script="/etc/profile.d/localenv.sh"
+etc_profile_env_script="/etc/profile"
 truetype_fonts_dir="/usr/share/fonts/truetype"
 repository_dir="/repository"
 
