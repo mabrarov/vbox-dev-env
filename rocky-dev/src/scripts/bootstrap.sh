@@ -824,7 +824,7 @@ consolas_font_dir="${truetype_fonts_dir}/consolas"
 if [[ ! -e "${consolas_font_dir}" ]]; then
   echo "=== Installing font: Consolas"
   mkdir -p "${consolas_font_dir}"
-  cp --no-preserve=all "${PROVISION_CONTENT_DIR}/usr/share/fonts/truetype/consolas"/. "${consolas_font_dir}"
+  cp --no-preserve=all -r "${PROVISION_CONTENT_DIR}/usr/share/fonts/truetype/consolas"/. "${consolas_font_dir}"
   chown -R root:root "${consolas_font_dir}"
   chmod -R u=rwX,g=rwX,o=rX "${consolas_font_dir}"
   find "${consolas_font_dir}" -type f -exec chmod u=rw,g=rw,o=r {} +
