@@ -660,7 +660,7 @@ EOF
 
   docker_config_dir="/etc/docker"
   mkdir -p "${docker_config_dir}"
-  mv -f "${PROVISION_CONTENT_DIR}/etc/docker/daemon.json" "${docker_config_dir}"/
+  cp --no-preserve=all -f "${PROVISION_CONTENT_DIR}/etc/docker/daemon.json" "${docker_config_dir}"/
 
   docker_cert_dir="${docker_config_dir}/certs.d"
   mkdir -p "${docker_cert_dir}"
@@ -674,7 +674,7 @@ EOF
 
   docker_systemd_service_dir="/etc/systemd/system/docker.service.d"
   mkdir -p "${docker_systemd_service_dir}"
-  mv -f "${PROVISION_CONTENT_DIR}/etc/systemd/system/docker.service.d/docker.service.conf" "${docker_systemd_service_dir}/override.conf"
+  cp --no-preserve=all -f "${PROVISION_CONTENT_DIR}/etc/systemd/system/docker.service.d/docker.service.conf" "${docker_systemd_service_dir}/override.conf"
   chown -R root:root "${docker_systemd_service_dir}"
   chmod -R u=rwX,g=rX,o=rX "${docker_systemd_service_dir}"
   systemctl daemon-reload
