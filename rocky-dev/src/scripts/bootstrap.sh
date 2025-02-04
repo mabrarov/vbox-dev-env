@@ -434,7 +434,7 @@ idea.log.path=\${idea.system.path}/log
 
   # Make IntelliJ IDEA trusting certificates issued by custom CA for the case when VPN / AV sniffs traffic
   import_ca_cert_into_intellij_idea "${user_home_dir}/.config/JetBrains/IntelliJIdea" \
-    "test-ca" "${provision_certs_dir}/test-ca.crt"
+    "ru-root-ca" "${provision_certs_dir}/ru-root-ca.crt"
 fi
 
 # IntelliJ IDEA plugins
@@ -498,7 +498,7 @@ idea.log.path=\${idea.system.path}/log
 
   # Make JetBrains Rider trusting certificates issued by custom CA for the case when VPN / AV sniffs traffic
   import_ca_cert_into_intellij_idea "${user_home_dir}/.config/JetBrains/Rider" \
-    "test-ca" "${provision_certs_dir}/test-ca.crt"
+    "ru-root-ca" "${provision_certs_dir}/ru-root-ca.crt"
 fi
 
 # JetBrains Rider plugins
@@ -547,7 +547,7 @@ idea.log.path=\${idea.system.path}/log
 
   # Make GoLand trusting certificates issued by custom CA for the case when VPN / AV sniffs traffic
   import_ca_cert_into_intellij_idea "${user_home_dir}/.config/JetBrains/GoLand" \
-    "test-ca" "${provision_certs_dir}/test-ca.crt"
+    "ru-root-ca" "${provision_certs_dir}/ru-root-ca.crt"
 fi
 
 # GoLand plugins
@@ -593,7 +593,7 @@ idea.log.path=\${idea.system.path}/log
 
   # Make CLion trusting certificates issued by custom CA for the case when VPN / AV sniffs traffic
   import_ca_cert_into_intellij_idea "${user_home_dir}/.config/JetBrains/CLion" \
-    "test-ca" "${provision_certs_dir}/test-ca.crt"
+    "ru-root-ca" "${provision_certs_dir}/ru-root-ca.crt"
 fi
 
 # CLion plugins
