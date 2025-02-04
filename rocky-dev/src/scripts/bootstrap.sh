@@ -316,7 +316,7 @@ if [[ ! -e "${java17_home}" ]]; then
   chown -R root:root "${java17_home}"
 fi
 
-if [[ ! -e "${opt_bin_dir}/go" ]]; then
+if [[ ! -e "${golang_home}" ]]; then
   echo "=== Installing Go"
   folder_name="go${golang_version}.linux-amd64.tar.gz"
   fname="go${golang_version}.linux-amd64.tar.gz"
@@ -325,7 +325,7 @@ if [[ ! -e "${opt_bin_dir}/go" ]]; then
     curl -sLf -o "${golang_dist}" "https://golang.org/dl/${fname}"
   fi
   tar -xzf "${golang_dist}" -C "${opt_bin_dir}"
-  chown -R root:root "${opt_bin_dir}/go"
+  chown -R root:root "${golang_home}"
 fi
 
 if [[ ! -e "${groovy_home}" ]]; then
