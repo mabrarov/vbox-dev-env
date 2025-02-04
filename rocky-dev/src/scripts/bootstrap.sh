@@ -662,11 +662,13 @@ EOF
   mkdir -p "${docker_config_dir}"
   cp --no-preserve=all -f "${PROVISION_CONTENT_DIR}/etc/docker/daemon.json" "${docker_config_dir}"/
 
-  docker_cert_dir="${docker_config_dir}/certs.d"
-  mkdir -p "${docker_cert_dir}"
-  docker_local_cert_dir="${docker_cert_dir}/docker.local:5000"
-  mkdir -p "${docker_local_cert_dir}"
-  mv -f "${PROVISION_CONTENT_DIR}/etc/docker/certs.d/docker.local/registry.crt" "${docker_local_cert_dir}/registry.crt"
+  if [[ -f "${PROVISION_CONTENT_DIR}/etc/docker/certs.d/docker.local/registry.crt" ]]; then
+    docker_cert_dir="${docker_config_dir}/certs.d"
+    mkdir -p "${docker_cert_dir}"
+    docker_local_cert_dir="${docker_cert_dir}/docker.local:5000"
+    mkdir -p "${docker_local_cert_dir}"
+    cp --no-preserve=all -f "${PROVISION_CONTENT_DIR}/etc/docker/certs.d/docker.local/registry.crt" "${docker_local_cert_dir}/registry.crt"
+  fi
 
   chown -R root:root "${docker_config_dir}"
   chmod -R u=rwX,g=rX,o=rX "${docker_config_dir}"
