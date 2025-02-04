@@ -958,14 +958,19 @@ find "${user_home_dir}/.config/JetBrains/CLion" -type f -exec chmod a-x {} +
 chown -R "${VM_USER}:${VM_USER_GROUP}" "${user_home_dir}"
 
 root_home="/root"
-root_npm_dir="${root_home}/.npm"
 root_npm_config="${root_home}/.npmrc"
-cp -f "${user_home_dir}/.npmrc" "${root_npm_config}"
-chown root:root "${root_npm_config}"
-chmod u=rwX,g=rX,o=rX "${root_npm_config}"
-cp -Rf "${user_home_dir}/.npm" "${root_home}"
-chown -R root:root "${root_npm_dir}"
-chmod -R u=rwX,g=rX,o=rX "${root_npm_dir}"
+if [[ -f "${user_home_dir}/.npmrc" ]]; then
+  cp -f "${user_home_dir}/.npmrc" "${root_npm_config}"
+  chown root:root "${root_npm_config}"
+  chmod u=rwX,g=rX,o=rX "${root_npm_config}"
+fi
+root_npm_dir="${root_home}/.npm"
+if [[ -d "${user_home_dir}/.npm" ]]; then
+  mkdir -p "${root_npm_dir}"
+  cp -Rf "${user_home_dir}/.npm"/. "${root_npm_dir}"/
+  chown -R root:root "${root_npm_dir}"
+  chmod -R u=rwX,g=rX,o=rX "${root_npm_dir}"
+fi
 npm install -g @angular/cli
 
 sudo -H -i -u "${VM_USER}" dbus-launch "${provision_scripts_dir}/user_settings.sh"
