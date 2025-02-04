@@ -282,7 +282,7 @@ if [[ ! -e "${java8_home}" ]]; then
     curl -sLf -o "${jdk_dist}" "https://cdn.azul.com/zulu/bin/${fname}"
   fi
   tar -xzf "${jdk_dist}" -C "${opt_bin_dir}"
-  mv -f "${opt_bin_dir}/${folder_name}" "${java8_home}"
+  mv "${opt_bin_dir}/${folder_name}" "${java8_home}"
   chown -R root:root "${java8_home}"
   sed -i -r 's/^([^#]+?[ =,])anon,?([ $])/\1\2/' "${java8_home}/jre/lib/security/java.security"
 fi
@@ -297,7 +297,7 @@ if [[ ! -e "${java11_home}" ]]; then
     curl -sLf -o "${jdk_dist}" "https://cdn.azul.com/zulu/bin/${fname}"
   fi
   tar -xzf "${jdk_dist}" -C "${opt_bin_dir}"
-  mv -f "${opt_bin_dir}/${folder_name}" "${java11_home}"
+  mv "${opt_bin_dir}/${folder_name}" "${java11_home}"
   chown -R root:root "${java11_home}"
 fi
 
@@ -311,7 +311,7 @@ if [[ ! -e "${java17_home}" ]]; then
     curl -sLf -o "${jdk_dist}" "https://cdn.azul.com/zulu/bin/${fname}"
   fi
   tar -xzf "${jdk_dist}" -C "${opt_bin_dir}"
-  mv -f "${opt_bin_dir}/${folder_name}" "${java17_home}"
+  mv "${opt_bin_dir}/${folder_name}" "${java17_home}"
   chown -R root:root "${java17_home}"
 fi
 
@@ -336,7 +336,7 @@ if [[ ! -e "${groovy_home}" ]]; then
       "https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/${fname}"
   fi
   unzip -q "${groovy_dist}" -d "${opt_bin_dir}"
-  mv -f "${opt_bin_dir}/groovy-${groovy_version}" "${groovy_home}"
+  mv "${opt_bin_dir}/groovy-${groovy_version}" "${groovy_home}"
   chown -R root:root "${groovy_home}"
 fi
 
@@ -348,7 +348,7 @@ if [[ ! -e "${ANT_HOME}" ]]; then
       "http://mirror.linux-ia64.org/apache//ant/binaries/apache-ant-${ant_version}-bin.tar.gz"
   fi
   tar -xzf "${ant_dist}" -C "${opt_bin_dir}"
-  mv -f "${opt_bin_dir}/apache-ant-${ant_version}" "${ANT_HOME}"
+  mv "${opt_bin_dir}/apache-ant-${ant_version}" "${ANT_HOME}"
   echo "=== Installing Ant-Contrib Tasks"
   ant_contrib_dist="${CACHE_DIR}/ant-contrib-${ant_contrib_version}-bin.tar.gz"
   if [[ ! -e "${ant_contrib_dist}" ]]; then
@@ -370,7 +370,7 @@ if [[ ! -e "${M2_HOME}" ]]; then
       "http://mirror.reverse.net/pub/apache/maven/maven-$(echo "${maven_version}" | sed -r 's/([0-9]+)\..*/\1/')/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz"
   fi
   tar -xzf "${maven_dist}" -C "${opt_bin_dir}"
-  mv -f "${opt_bin_dir}/apache-maven-${maven_version}" "${M2_HOME}"
+  mv "${opt_bin_dir}/apache-maven-${maven_version}" "${M2_HOME}"
   chown -R root:root "${M2_HOME}"
 fi
 
@@ -405,7 +405,7 @@ if [[ ! -e "${gradle_home}" ]]; then
   if [[ "${gradle_version_minor:-0}" -ne 0 ]]; then
     gradle_unpack_dir_name="${gradle_unpack_dir_name}.${gradle_version_minor}"
   fi
-  mv -f "${opt_bin_dir}/${gradle_unpack_dir_name}" "${gradle_home}"
+  mv "${opt_bin_dir}/${gradle_unpack_dir_name}" "${gradle_home}"
   chown -R root:root "${gradle_home}"
 fi
 
