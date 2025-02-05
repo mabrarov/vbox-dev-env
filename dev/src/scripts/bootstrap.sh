@@ -8,13 +8,15 @@ function make_backup {
   fi
 }
 
-function make_user_dir {
+function make_dir {
   local dir_user="${1}"
   local dir_group="${2}"
   local dir_path="${3}"
-  mkdir -p "${dir_path}"
-  chown "${dir_user}:${dir_group}" "${dir_path}"
-  chmod u=rwx "${dir_path}"
+  if ! [[ -d "${dir_path}" ]]; then
+    mkdir -p "${dir_path}"
+    chown "${dir_user}:${dir_group}" "${dir_path}"
+    chmod u=rwX,g=rwX,o=rX "${dir_path}"
+  fi
 }
 
 escape_text_for_regex() {
@@ -210,14 +212,14 @@ if ! grep -m 1 -E "$(escape_text_for_regex "${repository_disk_id}")\\s+$(escape_
 fi
 mount "${repository_disk_mount_path}"
 systemctl daemon-reload
+chown "${MY_USER}:${VAGRANT_BOX_ALL_USERS_GROUP}" "${repository_disk_mount_path}"
+chmod u=rwX,g=rwX,o=rX "${repository_disk_mount_path}"
 # Create directories for package managers to ensure they work as expected
-mkdir -p "${repository_disk_mount_path}/maven/repository"
-mkdir -p "${repository_disk_mount_path}/npm/npm-cache"
-mkdir -p "${repository_disk_mount_path}/go/bin"
-mkdir -p "${repository_disk_mount_path}/nuget/packages"
-# Fix permissions
-chown -R "${MY_USER}:${VAGRANT_BOX_ALL_USERS_GROUP}" "${repository_disk_mount_path}"
-chmod -R u=rwX,g=rwX,o=rX "${repository_disk_mount_path}"
+make_dir "${MY_USER}" "${VAGRANT_BOX_ALL_USERS_GROUP}" "${repository_disk_mount_path}/maven/repository"
+make_dir "${MY_USER}" "${VAGRANT_BOX_ALL_USERS_GROUP}" "${repository_disk_mount_path}/npm/npm-cache"
+make_dir "${MY_USER}" "${VAGRANT_BOX_ALL_USERS_GROUP}" "${repository_disk_mount_path}/go"
+make_dir "${MY_USER}" "${VAGRANT_BOX_ALL_USERS_GROUP}" "${repository_disk_mount_path}/go/bin"
+make_dir "${MY_USER}" "${VAGRANT_BOX_ALL_USERS_GROUP}" "${repository_disk_mount_path}/nuget/packages"
 
 # Refer to https://gist.github.com/leifg/4713995?permalink_comment_id=1615625#gistcomment-1615625
 # for details about the way disk ID is generated and can be determined from respective VMDK file
