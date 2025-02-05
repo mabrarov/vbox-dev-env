@@ -14,3 +14,4 @@
 .bash_aliases text eol=lf
 Dockerfile text eol=lf
 /dev/src/content/.ssh/id_* text eol=lf
+/dev/src/content/login/.netrc eol=lf
