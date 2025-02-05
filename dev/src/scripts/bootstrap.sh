@@ -19,7 +19,7 @@ function make_dir {
   fi
 }
 
-escape_text_for_regex() {
+function escape_text_for_regex() {
   local text="${1}"
   text="${text//\\/\\\\}"
   text="${text//\*/\\*}"
@@ -38,7 +38,7 @@ escape_text_for_regex() {
   echo "${text}"
 }
 
-escape_text_for_sed() {
+function escape_text_for_sed() {
   local text="${1}"
   text="${text////\\/}"
   echo "${text}"
