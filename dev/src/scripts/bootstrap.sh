@@ -85,6 +85,11 @@ if [[ -f "${login_customization_file}" ]]; then
   chmod 600 "${user_login_file}"
 fi
 
+# Configure Go Modules private repository
+etc_profile_env_script="/etc/profile.d/localenv.sh"
+golang_private_repository="gitlab.c2g.pw"
+echo "export GOPRIVATE=$(printf "%q" "${golang_private_repository}")" >>"${etc_profile_env_script}"
+
 # IntelliJ IDEA offline license key
 idea_config_dir="${user_home_dir}/.config/JetBrains/IntelliJIdea"
 idea_key_src_file="${PROVISION_CONTENT_DIR}/idea/idea.key"
