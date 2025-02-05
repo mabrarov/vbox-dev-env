@@ -207,13 +207,13 @@ ws_disk_fstab_id="/dev/disk/by-id/ata-VBOX_HARDDISK_VB1fef54b4-5d082cf0-part1"
 ws_disk_mount_path="/ws"
 echo "==> Mounting ws.vmdk disk as ${ws_disk_mount_path}"
 mkdir -p "${ws_disk_mount_path}"
-chown "${MY_USER}:${VAGRANT_BOX_USER_GROUP}" "${ws_disk_mount_path}"
-chmod 775 "${ws_disk_mount_path}"
 if ! grep -m 1 -E "$(escape_text_for_regex "${ws_disk_fstab_id}")\\s+$(escape_text_for_regex "${ws_disk_mount_path}")" /etc/fstab >/dev/null; then
   echo "${ws_disk_fstab_id} ${ws_disk_mount_path}                   xfs     defaults        0 0" >>/etc/fstab
 fi
 mount "${ws_disk_mount_path}"
 systemctl daemon-reload
+chown "${MY_USER}:${VAGRANT_BOX_USER_GROUP}" "${ws_disk_mount_path}"
+chmod 775 "${ws_disk_mount_path}"
 
 # Refer to https://gist.github.com/leifg/4713995?permalink_comment_id=1615625#gistcomment-1615625
 # for details about the way disk ID is generated and can be determined from respective VMDK file
@@ -222,13 +222,13 @@ repository_disk_id="/dev/disk/by-id/ata-VBOX_HARDDISK_VBa23d58cb-8f3cfb19-part1"
 repository_disk_mount_path="/repository"
 mkdir -p ${repository_disk_mount_path}
 echo "==> Mounting repository.vmdk disk as ${repository_disk_mount_path}"
-chown "${MY_USER}:${VAGRANT_BOX_USER_GROUP}" "${repository_disk_mount_path}"
-chmod 775 "${repository_disk_mount_path}"
 if ! grep -m 1 -E "$(escape_text_for_regex "${repository_disk_id}")\\s+$(escape_text_for_regex "${repository_disk_mount_path}")" /etc/fstab >/dev/null; then
   echo "${repository_disk_id} ${repository_disk_mount_path}                   xfs     defaults        0 0" >>/etc/fstab
 fi
 mount "${repository_disk_mount_path}"
 systemctl daemon-reload
+chown "${MY_USER}:${VAGRANT_BOX_USER_GROUP}" "${repository_disk_mount_path}"
+chmod 775 "${repository_disk_mount_path}"
 # Create directories for package managers to ensure they work as expected
 make_dir "${MY_USER}" "${VAGRANT_BOX_USER_GROUP}" 755 "${repository_disk_mount_path}/maven/repository"
 make_dir "${MY_USER}" "${VAGRANT_BOX_USER_GROUP}" 755 "${repository_disk_mount_path}/npm/npm-cache"
