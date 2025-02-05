@@ -59,6 +59,7 @@ Optional files for customization of virtual machine:
 | 10 | src/content/rider/rider.key | JetBrains Rider offline license key |
 | 11 | src/content/goland/goland.key | GoLand offline license key |
 | 12 | src/content/clion/clion.key | CLion offline license key |
+| 13 | src/content/login/.netrc | The [.netrc](https://www.gnu.org/software/inetutils/manual/html_node/The-_002enetrc-file.html) file |
 
 `src/content/user.sh` script should look like
 

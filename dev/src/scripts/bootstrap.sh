@@ -77,6 +77,14 @@ if [[ -f "${ssh_customization_dir}/config" ]]; then
   mv -f "${ssh_customization_dir}/config" "${ssh_user_config_dir}/"
 fi
 
+# Copy auto-login configuration
+login_customization_file="${PROVISION_CONTENT_DIR}/login/.netrc"
+if [[ -f "${login_customization_file}" ]]; then
+  user_login_file="${user_home_dir}/.netrc"
+  cp --no-preserve=all "${login_customization_file}" "${user_login_file}"
+  chmod 600 "${user_login_file}"
+fi
+
 # IntelliJ IDEA offline license key
 idea_config_dir="${user_home_dir}/.config/JetBrains/IntelliJIdea"
 idea_key_src_file="${PROVISION_CONTENT_DIR}/idea/idea.key"
