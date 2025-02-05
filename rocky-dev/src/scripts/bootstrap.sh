@@ -1070,7 +1070,7 @@ rm -rf /var/cache/dnf
 rm -rf "${repository_dir}"
 mkdir -p "${repository_dir}/maven/repository"
 mkdir -p "${repository_dir}/npm/npm-cache"
-mkdir -p "${repository_dir}/go"
+mkdir -p "${repository_dir}/go/bin"
 mkdir -p "${repository_dir}/nuget/packages"
 chown -R "${VM_USER}:${VM_USER_GROUP}" "${repository_dir}"
 chmod u=rwX,g=rX,o=rX -R "${repository_dir}"

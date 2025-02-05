@@ -213,7 +213,7 @@ systemctl daemon-reload
 # Create directories for package managers to ensure they work as expected
 mkdir -p "${repository_disk_mount_path}/maven/repository"
 mkdir -p "${repository_disk_mount_path}/npm/npm-cache"
-mkdir -p "${repository_disk_mount_path}/go"
+mkdir -p "${repository_disk_mount_path}/go/bin"
 mkdir -p "${repository_disk_mount_path}/nuget/packages"
 # Fix permissions
 chown -R "${MY_USER}:${VAGRANT_BOX_ALL_USERS_GROUP}" "${repository_disk_mount_path}"
