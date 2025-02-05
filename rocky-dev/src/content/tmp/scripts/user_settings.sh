@@ -10,7 +10,7 @@ gsettings set org.gnome.desktop.session idle-delay 0
 gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'ru')]"
 gsettings set org.gnome.desktop.sound event-sounds false
-gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'code.desktop', 'jetbrains-idea.desktop', 'jetbrains-rider.desktop', 'jetbrains-goland.desktop', 'jetbrains-clion.desktop']"
+gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'code.desktop', 'jetbrains-idea.desktop', 'jetbrains-goland.desktop', 'jetbrains-clion.desktop']"
 
 gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "[]"
 gsettings set org.gnome.desktop.wm.keybindings cycle-panels-backward "[]"
