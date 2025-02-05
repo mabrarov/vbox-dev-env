@@ -3,7 +3,6 @@
 
 box_user = "user"
 box_password = "user"
-box_all_users_group = "users"
 provision_content_destination_dir = "/tmp/dev"
 
 ws_host_dir = File.expand_path("~/ws")
@@ -30,7 +29,6 @@ Vagrant.configure("2") do |config|
       "VAGRANT_BOX_USER" => box_user,
       "VAGRANT_BOX_PASSWORD" => box_password,
       "VAGRANT_BOX_USER_GROUP" => box_user,
-      "VAGRANT_BOX_ALL_USERS_GROUP" => box_all_users_group,
       "PROVISION_CONTENT_DIR" => provision_content_destination_dir
     }
   end
