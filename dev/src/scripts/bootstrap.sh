@@ -194,7 +194,7 @@ fi
 mount "${ws_disk_mount_path}"
 systemctl daemon-reload
 chown -R "${MY_USER}:${VAGRANT_BOX_ALL_USERS_GROUP}" "${ws_disk_mount_path}"
-chmod -R 775 "${ws_disk_mount_path}"
+chmod -R u=rwX,g=rwX,o=rX "${ws_disk_mount_path}"
 
 # Refer to https://gist.github.com/leifg/4713995?permalink_comment_id=1615625#gistcomment-1615625
 # for details about the way disk ID is generated and can be determined from respective VMDK file
