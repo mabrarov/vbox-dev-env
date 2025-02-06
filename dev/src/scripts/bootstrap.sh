@@ -95,7 +95,6 @@ fi
 
 # Configure Go Modules private repository
 etc_profile_env_script="/etc/profile.d/localenv.sh"
-golang_private_repository="gitlab.c2g.pw"
 echo "export GOPRIVATE=$(printf "%q" "${golang_private_repository}")" >>"${etc_profile_env_script}"
 
 # IntelliJ IDEA offline license key
@@ -158,10 +157,19 @@ if [[ $(grep -c "$(escape_text_for_regex "${MY_TIMEZONE}")" /etc/timezone) -eq 0
   ln -fs "/usr/share/zoneinfo/${MY_TIMEZONE}" /etc/localtime
 fi
 
+golang_private_repository="gitlab.c2g.pw"
+
 # Configure Git: fill user name and user email
 git_user_config_file="${user_home_dir}/.gitconfig"
 sed -i -r 's/\{name\}/'"$(escape_text_for_sed "${MY_NAME}")"'/' "${git_user_config_file}"
 sed -i -r 's/\{email\}/'"$(escape_text_for_sed "${MY_EMAIL}")"'/' "${git_user_config_file}"
+# Go Modules fix for GitLab (in case of repository renaming).
+# Use SSH instead of HTTPS to fetch Go Modules.
+# Refer to https://github.com/golang/go/issues/37504.
+cat <<EOF >>"${git_user_config_file}"
+[url "git@${golang_private_repository}:"]
+        insteadOf = https://${golang_private_repository}/
+EOF
 
 # Change name of OS account
 if [[ $(grep -c -E "^$(escape_text_for_regex "${MY_USER}:")" /etc/passwd) -eq 0 ]]; then
