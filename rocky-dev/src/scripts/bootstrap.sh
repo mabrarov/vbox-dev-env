@@ -946,6 +946,7 @@ chmod 644 "${provision_certs_dir}"/*
 "${opt_bin_dir}/scripts/code_plugin.sh" 'ms-vscode-remote.remote-containers'          "${VM_USER}" 10
 "${opt_bin_dir}/scripts/code_plugin.sh" 'HashiCorp.terraform'                         "${VM_USER}" 10
 "${opt_bin_dir}/scripts/code_plugin.sh" 'HashiCorp.HCL'                               "${VM_USER}" 10
+"${opt_bin_dir}/scripts/code_plugin.sh" 'golang.Go'                                   "${VM_USER}" 10
 
 # Install .NET tools for VM_USER user
 sudo -H -i -u "${VM_USER}" dotnet tool install -g dotnet-reportgenerator-globaltool
