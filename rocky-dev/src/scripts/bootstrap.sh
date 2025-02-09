@@ -80,6 +80,7 @@ helmfile_version="0.170.1"
 shellcheck_version="0.10.0"
 dbeaver_version="24.3.2"
 yq_version="4.45.1"
+xq_version="1.3.0"
 headlamp_version="0.28.1"
 
 intellij_idea_version="2024.2.3"
@@ -1031,6 +1032,22 @@ if ! which yq &>/dev/null; then
   mv "$(dirname "${yq_file}")/${yq_filename}_${yq_platform}" "${yq_file}"
   chmod a+x "${yq_file}"
   chown root:root "${yq_file}"
+fi
+
+# Install xq tool (https://github.com/sibprogrammer/xq)
+if ! which xq &>/dev/null; then
+  xq_filename="xq"
+  xq_file="${usr_local_bin_dir}/${xq_filename}"
+  xq_platform="linux_amd64"
+  xq_dist_filename="xq_${xq_version}_${xq_platform}.tar.gz"
+  xq_dist="${CACHE_DIR}/${xq_dist_filename}"
+  if [[ ! -f "${xq_dist}" ]]; then
+    curl -sLf -o "${xq_dist}" \
+      "https://github.com/sibprogrammer/xq/releases/download/v${xq_version}/${xq_filename}_${xq_version}_${xq_platform}.tar.gz"
+  fi
+  tar -xf "${xq_dist}" -C "$(dirname "${xq_file}")" "${xq_filename}"
+  chmod a+x "${xq_file}"
+  chown root:root "${xq_file}"
 fi
 
 # Headlamp (https://headlamp.dev/)
