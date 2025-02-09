@@ -85,7 +85,7 @@ headlamp_version="0.28.1"
 
 intellij_idea_version="2024.3.2.2"
 rider_version="2024.3.4"
-goland_version="2024.2.4"
+goland_version="2024.3.2.1"
 clion_version="2024.2.2"
 
 add_line_to_hosts "# Some entries integrated into Vagrant box"
@@ -559,19 +559,19 @@ fi
 goland_plugin_dir="${user_home_dir}/.local/share/JetBrains/GoLand"
 # AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
 install_jetbrains_plugin "${goland_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
-  "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.6.zip"
+  "https://downloads.marketplace.jetbrains.com/files/7391/658997/asciidoctor-intellij-plugin-0.43.6.zip"
 # Batch Scripts Support (https://plugins.jetbrains.com/plugin/265-batch-scripts-support)
 install_jetbrains_plugin "${goland_plugin_dir}" "idea-batch-1.0.13.zip" \
-  "https://plugins.jetbrains.com/files/265/148140/idea-batch-1.0.13.zip"
+  "https://downloads.marketplace.jetbrains.com/files/265/148140/idea-batch-1.0.13.zip"
 # PowerShell (https://plugins.jetbrains.com/plugin/10249-powershell)
 install_jetbrains_plugin "${goland_plugin_dir}" "PowerShell-2.8.0.zip" \
-  "https://plugins.jetbrains.com/files/10249/621620/PowerShell-2.8.0.zip"
+  "https://downloads.marketplace.jetbrains.com/files/10249/678045/PowerShell-2.9.0.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
 install_jetbrains_plugin "${goland_plugin_dir}" "StringToolsPlugin-4.22.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
-install_jetbrains_plugin "${goland_plugin_dir}" "terraform-242.23339.11.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7808/608451/terraform-242.23339.11.zip"
+install_jetbrains_plugin "${goland_plugin_dir}" "terraform-243.23654.44.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7808/656639/terraform-243.23654.44.zip"
 
 clion_home="${opt_bin_dir}/clion"
 if [[ ! -e "${clion_home}" ]]; then
