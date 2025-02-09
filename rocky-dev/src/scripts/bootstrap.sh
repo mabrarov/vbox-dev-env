@@ -50,6 +50,7 @@ provision_scripts_dir="${PROVISION_CONTENT_DIR}/tmp/scripts"
 java8_home="${opt_bin_dir}/jdk"
 java11_home="${opt_bin_dir}/jdk-11"
 java17_home="${opt_bin_dir}/jdk-17"
+java21_home="${opt_bin_dir}/jdk-21"
 export JAVA_HOME="${java17_home}"
 
 export ANT_HOME="${opt_bin_dir}/ant"
@@ -321,6 +322,20 @@ if [[ ! -e "${java17_home}" ]]; then
   tar -xzf "${jdk_dist}" -C "${opt_bin_dir}"
   mv "${opt_bin_dir}/${folder_name}" "${java17_home}"
   chown -R root:root "${java17_home}"
+fi
+
+# https://www.azul.com/downloads/?version=java-21-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
+if [[ ! -e "${java21_home}" ]]; then
+  echo "=== Installing Azul Zulu CE JDK 21"
+  folder_name="zulu21.40.17-ca-jdk21.0.6-linux_x64"
+  fname="${folder_name}.tar.gz"
+  jdk_dist="${CACHE_DIR}/${fname}"
+  if [[ ! -e "${jdk_dist}" ]]; then
+    curl -sLf -o "${jdk_dist}" "https://cdn.azul.com/zulu/bin/${fname}"
+  fi
+  tar -xzf "${jdk_dist}" -C "${opt_bin_dir}"
+  mv "${opt_bin_dir}/${folder_name}" "${java21_home}"
+  chown -R root:root "${java21_home}"
 fi
 
 if [[ ! -e "${golang_home}" ]]; then

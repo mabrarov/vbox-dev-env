@@ -16,3 +16,4 @@ alias lsk="eval \"\$(ssh-agent -s)\" && ssh-add  ~/.ssh/\"\$([[ -f ~/.ssh/id_ed2
 alias j8="set_java_home /opt/jdk"
 alias j11="set_java_home /opt/jdk-11"
 alias j17="set_java_home /opt/jdk-17"
+alias j21="set_java_home /opt/jdk-21"
