@@ -84,7 +84,7 @@ xq_version="1.3.0"
 headlamp_version="0.28.1"
 
 intellij_idea_version="2024.2.3"
-rider_version="2024.2.6"
+rider_version="2024.3.4"
 goland_version="2024.2.4"
 clion_version="2024.2.2"
 
@@ -513,22 +513,22 @@ fi
 rider_plugin_dir="${user_home_dir}/.local/share/JetBrains/Rider"
 # AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
 install_jetbrains_plugin "${rider_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
-  "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.6.zip"
+  "https://downloads.marketplace.jetbrains.com/files/7391/658997/asciidoctor-intellij-plugin-0.43.6.zip"
 # Go Template (https://plugins.jetbrains.com/plugin/10581-go-template)
-install_jetbrains_plugin "${rider_plugin_dir}" "go-template-242.20224.155.zip" \
-  "https://plugins.jetbrains.com/files/10581/579434/go-template-242.20224.155.zip"
+install_jetbrains_plugin "${rider_plugin_dir}" "go-template-243.21565.122.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10581/629973/go-template-243.21565.122.zip"
 # Makefile Language (https://plugins.jetbrains.com/plugin/9333-makefile-language)
-install_jetbrains_plugin "${rider_plugin_dir}" "makefile-242.20224.155.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/9333/579456/makefile-242.20224.155.zip"
+install_jetbrains_plugin "${rider_plugin_dir}" "makefile-243.23654.19.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/9333/654848/makefile-243.23654.19.zip"
 # PowerShell (https://plugins.jetbrains.com/plugin/10249-powershell)
 install_jetbrains_plugin "${rider_plugin_dir}" "PowerShell-2.8.0.zip" \
-  "https://plugins.jetbrains.com/files/10249/621620/PowerShell-2.8.0.zip"
+  "https://downloads.marketplace.jetbrains.com/files/10249/678045/PowerShell-2.9.0.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
 install_jetbrains_plugin "${rider_plugin_dir}" "StringToolsPlugin-4.22.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
-# Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
-install_jetbrains_plugin "${rider_plugin_dir}" "terraform-242.23339.11.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7808/608451/terraform-242.23339.11.zip"
+# Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl)
+install_jetbrains_plugin "${rider_plugin_dir}" "terraform-243.23654.44.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7808/656639/terraform-243.23654.44.zip"
 
 goland_home="${opt_bin_dir}/goland"
 if [[ ! -e "${goland_home}" ]]; then
