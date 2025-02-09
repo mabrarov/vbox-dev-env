@@ -79,7 +79,7 @@ sops_version="3.9.4"
 helmfile_version="0.170.1"
 shellcheck_version="0.10.0"
 dbeaver_version="24.3.2"
-yq_version="4.44.6"
+yq_version="4.45.1"
 headlamp_version="0.27.0"
 
 intellij_idea_version="2024.2.3"
