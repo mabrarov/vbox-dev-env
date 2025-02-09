@@ -258,7 +258,6 @@ if [[ -f "${docker_daemon_config}" ]]; then
 fi
 
 echo "export MINIKUBE_HOME=$(printf "%q" "${ws_disk_mount_path}/.minikube")" >>/etc/profile.d/localenv.sh
-make_dir "${MY_USER}" "${VAGRANT_BOX_USER_GROUP}" 755 "${ws_disk_mount_path}/.minikube"
 
 # Nautilus bookmarks
 nautilus_user_bookmark_file="${user_home_dir}/.config/gtk-3.0/bookmarks"
