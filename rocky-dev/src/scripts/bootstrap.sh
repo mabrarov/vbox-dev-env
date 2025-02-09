@@ -312,7 +312,7 @@ fi
 # https://www.azul.com/downloads/?version=java-17-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
 if [[ ! -e "${java17_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 17"
-  folder_name="zulu17.54.21-ca-jdk17.0.13-linux_x64"
+  folder_name="zulu17.56.15-ca-jdk17.0.14-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
