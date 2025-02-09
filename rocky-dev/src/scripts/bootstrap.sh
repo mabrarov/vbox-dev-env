@@ -86,7 +86,7 @@ headlamp_version="0.28.1"
 intellij_idea_version="2024.3.2.2"
 rider_version="2024.3.4"
 goland_version="2024.3.2.1"
-clion_version="2024.2.2"
+clion_version="2024.3.2"
 
 add_line_to_hosts "# Some entries integrated into Vagrant box"
 
@@ -607,14 +607,14 @@ clion_plugin_dir="${user_home_dir}/.local/share/JetBrains/CLion"
 install_jetbrains_plugin "${clion_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
   "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.6.zip"
 # Kubernetes (https://plugins.jetbrains.com/plugin/10485-kubernetes)
-install_jetbrains_plugin "${clion_plugin_dir}" "clouds-kubernetes-242.22855.92.zip" \
-  "https://plugins.jetbrains.com/files/10485/605758/clouds-kubernetes-242.22855.92.zip"
+install_jetbrains_plugin "${clion_plugin_dir}" "clouds-kubernetes-243.23654.116.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10485/666479/clouds-kubernetes-243.23654.116.zip"
 # Go Template (https://plugins.jetbrains.com/plugin/10581-go-template)
-install_jetbrains_plugin "${clion_plugin_dir}" "go-template-242.20224.155.zip" \
-  "https://plugins.jetbrains.com/files/10581/579434/go-template-242.20224.155.zip"
+install_jetbrains_plugin "${clion_plugin_dir}" "go-template-243.21565.122.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10581/629973/go-template-243.21565.122.zip"
 # PowerShell (https://plugins.jetbrains.com/plugin/10249-powershell)
 install_jetbrains_plugin "${clion_plugin_dir}" "PowerShell-2.8.0.zip" \
-  "https://plugins.jetbrains.com/files/10249/621620/PowerShell-2.8.0.zip"
+  "https://downloads.marketplace.jetbrains.com/files/10249/678045/PowerShell-2.9.0.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
 install_jetbrains_plugin "${clion_plugin_dir}" "StringToolsPlugin-4.22.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
