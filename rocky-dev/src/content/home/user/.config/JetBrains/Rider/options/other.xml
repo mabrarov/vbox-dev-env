@@ -1,7 +1,0 @@
-<application>
-    <component name="PropertyService"><![CDATA[{
-  "keyToString": {
-    "SHELLCHECK.PATH": "/usr/local/bin/shellcheck"
-  }
-}]]></component>
-</application>

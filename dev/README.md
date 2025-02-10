@@ -56,10 +56,9 @@ Optional files for customization of virtual machine:
 | 7 | src/content/bash/.bash_aliases | Additional Bash aliases. If some alias uses the same name as existing one then it overrides existing alias |
 | 8 | src/content/.docker/config.json | Docker authentication data |
 | 9 | src/content/idea/idea.key | IntelliJ IDEA offline license key |
-| 10 | src/content/rider/rider.key | JetBrains Rider offline license key |
-| 11 | src/content/goland/goland.key | GoLand offline license key |
-| 12 | src/content/clion/clion.key | CLion offline license key |
-| 13 | src/content/login/.netrc | The [.netrc](https://www.gnu.org/software/inetutils/manual/html_node/The-_002enetrc-file.html) file |
+| 10 | src/content/goland/goland.key | GoLand offline license key |
+| 11 | src/content/clion/clion.key | CLion offline license key |
+| 12 | src/content/login/.netrc | The [.netrc](https://www.gnu.org/software/inetutils/manual/html_node/The-_002enetrc-file.html) file |
 
 `src/content/user.sh` script should look like
 

@@ -85,7 +85,6 @@ xq_version="1.3.0"
 headlamp_version="0.28.1"
 
 intellij_idea_version="2024.3.2.2"
-rider_version="2024.3.4"
 goland_version="2024.3.2.1"
 clion_version="2024.3.2"
 
@@ -491,55 +490,6 @@ install_jetbrains_plugin "${idea_plugin_dir}" "StringToolsPlugin-4.22.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
 install_jetbrains_plugin "${idea_plugin_dir}" "terraform-243.23654.44.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7808/656639/terraform-243.23654.44.zip"
-
-rider_home="${opt_bin_dir}/rider"
-if [[ ! -e "${rider_home}" ]]; then
-  echo "=== Installing JetBrains Rider"
-  rider_fname="JetBrains.Rider-${rider_version}.tar.gz"
-  rider_dist="${CACHE_DIR}/${rider_fname}"
-  if [[ ! -e "${rider_dist}" ]]; then
-    curl -sLf -o "${rider_dist}" "https://download.jetbrains.com/rider/${rider_fname}"
-  fi
-  tar -zxf "${rider_dist}" -C "${opt_bin_dir}"
-  mv "$(find "${opt_bin_dir}" -maxdepth 1 -name "JetBrains*Rider*" -type d)" "${rider_home}"
-  ln -s "${rider_home}/bin/rider" "${usr_local_bin_dir}/rider"
-  sed -i -r 's/-Xms.+m/-Xms512m/' "${rider_home}/bin/rider64.vmoptions"
-  sed -i -r 's/-Xmx.+m/-Xmx4096m/' "${rider_home}/bin/rider64.vmoptions"
-  echo '-Dawt.ime.disabled=true' >> "${rider_home}/bin/rider64.vmoptions"
-  # https://www.jetbrains.com/help/rider/Directories_Used_by_the_IDE_to_Store_Settings_Caches_Plugins_and_Logs.html
-  echo "
-idea.config.path=\${user.home}/.config/JetBrains/Rider
-idea.system.path=\${user.home}/.cache/JetBrains/Rider
-idea.plugins.path=\${user.home}/.local/share/JetBrains/Rider
-idea.log.path=\${idea.system.path}/log
-" >>"${rider_home}/bin/idea.properties"
-  chown -R root:root "${rider_home}"
-
-  # Make JetBrains Rider trusting certificates issued by custom CA for the case when VPN / AV sniffs traffic
-  import_ca_cert_into_intellij_idea "${user_home_dir}/.config/JetBrains/Rider" \
-    "ru-root-ca" "${provision_certs_dir}/ru-root-ca.crt"
-fi
-
-# JetBrains Rider plugins
-rider_plugin_dir="${user_home_dir}/.local/share/JetBrains/Rider"
-# AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
-install_jetbrains_plugin "${rider_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7391/658997/asciidoctor-intellij-plugin-0.43.6.zip"
-# Go Template (https://plugins.jetbrains.com/plugin/10581-go-template)
-install_jetbrains_plugin "${rider_plugin_dir}" "go-template-243.21565.122.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10581/629973/go-template-243.21565.122.zip"
-# Makefile Language (https://plugins.jetbrains.com/plugin/9333-makefile-language)
-install_jetbrains_plugin "${rider_plugin_dir}" "makefile-243.23654.19.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/9333/654848/makefile-243.23654.19.zip"
-# PowerShell (https://plugins.jetbrains.com/plugin/10249-powershell)
-install_jetbrains_plugin "${rider_plugin_dir}" "PowerShell-2.8.0.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10249/678045/PowerShell-2.9.0.zip"
-# String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
-install_jetbrains_plugin "${rider_plugin_dir}" "StringToolsPlugin-4.22.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
-# Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl)
-install_jetbrains_plugin "${rider_plugin_dir}" "terraform-243.23654.44.zip" \
   "https://downloads.marketplace.jetbrains.com/files/7808/656639/terraform-243.23654.44.zip"
 
 goland_home="${opt_bin_dir}/goland"
@@ -972,7 +922,6 @@ chmod -R og-rwx "${user_home_dir}/.m2"
 chmod u-x "${user_home_dir}/.m2"/*
 chmod 644 "${user_home_dir}/.local/share/JetBrains/consentOptions"/*
 find "${user_home_dir}/.config/JetBrains/IntelliJIdea" -type f -exec chmod a-x {} +
-find "${user_home_dir}/.config/JetBrains/Rider" -type f -exec chmod a-x {} +
 find "${user_home_dir}/.config/JetBrains/GoLand" -type f -exec chmod a-x {} +
 find "${user_home_dir}/.config/JetBrains/CLion" -type f -exec chmod a-x {} +
 

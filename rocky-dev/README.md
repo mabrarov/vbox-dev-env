@@ -21,9 +21,6 @@ All paths given in this README are relative to the directory where this README i
 1. Place [IntelliJ IDEA distribution for Linux](https://www.jetbrains.com/idea/download/?section=linux) in [cache](cache) directory.
     This file can be downloaded automatically during building Vagrant box if VPN is used.
     Otherwise, find the name of file in [src/scripts/bootstrap.sh](src/scripts/bootstrap.sh) and place that file manually.
-1. Place [JetBrains Rider distribution for Linux](https://www.jetbrains.com/rider/download/#section=linux) in [cache](cache) directory.
-    This file can be downloaded automatically during building Vagrant box if VPN is used.
-    Otherwise, find the name of file in [src/scripts/bootstrap.sh](src/scripts/bootstrap.sh) and place that file manually.
 1. Place [GoLand distribution for Linux](https://www.jetbrains.com/go/download/#section=linux) in [cache](cache) directory.
     This file can be downloaded automatically during building Vagrant box if VPN is used.
     Otherwise, find the name of file in [src/scripts/bootstrap.sh](src/scripts/bootstrap.sh) and place that file manually.

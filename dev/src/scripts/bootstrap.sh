@@ -107,16 +107,6 @@ if [[ -f "${idea_key_src_file}" ]]; then
   chmod 600 "${idea_key_dst_file}"
 fi
 
-# JetBrains Rider offline license key
-rider_config_dir="${user_home_dir}/.config/JetBrains/Rider"
-rider_key_src_file="${PROVISION_CONTENT_DIR}/rider/rider.key"
-if [[ -f "${rider_key_src_file}" ]]; then
-  mkdir -p "${rider_config_dir}"
-  rider_key_dst_file="${rider_config_dir}/rider.key"
-  mv -f "${rider_key_src_file}" "${rider_key_dst_file}"
-  chmod 600 "${rider_key_dst_file}"
-fi
-
 # GoLand offline license key
 goland_config_dir="${user_home_dir}/.config/JetBrains/GoLand"
 goland_key_src_file="${PROVISION_CONTENT_DIR}/goland/goland.key"
