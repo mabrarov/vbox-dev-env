@@ -50,6 +50,8 @@ function escape_text_for_sed() {
   echo "${text}"
 }
 
+golang_private_repository="gitlab.c2g.pw"
+
 user_home_dir="/home/${VAGRANT_BOX_USER}"
 
 # Default name of OS account. Matches with base VM defined in Vagrantfile (refer to config.vm.box)
@@ -146,8 +148,6 @@ if [[ $(grep -c "$(escape_text_for_regex "${MY_TIMEZONE}")" /etc/timezone) -eq 0
   echo "${MY_TIMEZONE}" >/etc/timezone
   ln -fs "/usr/share/zoneinfo/${MY_TIMEZONE}" /etc/localtime
 fi
-
-golang_private_repository="gitlab.c2g.pw"
 
 # Configure Git: fill user name and user email
 git_user_config_file="${user_home_dir}/.gitconfig"
