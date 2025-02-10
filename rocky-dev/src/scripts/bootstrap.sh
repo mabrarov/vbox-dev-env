@@ -902,7 +902,6 @@ chmod 644 "${provision_certs_dir}"/*
 "${opt_bin_dir}/scripts/code_plugin.sh" 'bitwisecook.irule'                           "${VM_USER}" 10
 "${opt_bin_dir}/scripts/code_plugin.sh" 'Postman.postman-for-vscode'                  "${VM_USER}" 10
 "${opt_bin_dir}/scripts/code_plugin.sh" 'ms-vscode.cpptools-extension-pack'           "${VM_USER}" 10
-"${opt_bin_dir}/scripts/code_plugin.sh" 'ms-dotnettools.csdevkit'                     "${VM_USER}" 10
 "${opt_bin_dir}/scripts/code_plugin.sh" 'ms-kubernetes-tools.vscode-kubernetes-tools' "${VM_USER}" 10
 "${opt_bin_dir}/scripts/code_plugin.sh" 'ms-azuretools.vscode-docker'                 "${VM_USER}" 10
 "${opt_bin_dir}/scripts/code_plugin.sh" 'ms-vscode-remote.remote-containers'          "${VM_USER}" 10
