@@ -1,7 +1,8 @@
 <application>
     <component name="PropertyService"><![CDATA[{
   "keyToString": {
-    "SHELLCHECK.PATH": "/usr/local/bin/shellcheck"
+    "SHELLCHECK.PATH": "/usr/local/bin/shellcheck",
+    "clion.nova.hide.welcome.screen.promo": "true"
   }
 }]]></component>
 </application>

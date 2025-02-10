@@ -50,6 +50,7 @@ provision_scripts_dir="${PROVISION_CONTENT_DIR}/tmp/scripts"
 java8_home="${opt_bin_dir}/jdk"
 java11_home="${opt_bin_dir}/jdk-11"
 java17_home="${opt_bin_dir}/jdk-17"
+java21_home="${opt_bin_dir}/jdk-21"
 export JAVA_HOME="${java17_home}"
 
 export ANT_HOME="${opt_bin_dir}/ant"
@@ -66,26 +67,27 @@ gradle_home="${opt_bin_dir}/gradle"
 groovy_version="4.0.24"
 groovy_home="${opt_bin_dir}/groovy"
 
-golang_version="1.23.4"
+golang_version="1.23.6"
 golang_home="${opt_bin_dir}/go"
 
-docker_compose_version="2.32.1"
-kubectl_version="1.32.0"
-minikube_version="1.34.0"
-helm_version="3.16.4"
+docker_compose_version="2.32.4"
+kubectl_version="1.32.1"
+minikube_version="1.35.0"
+helm_version="3.17.0"
 helm_secrets_plugin_version="4.6.2"
-age_version="1.1.0"
-sops_version="3.9.2"
-helmfile_version="0.169.2"
+age_version="1.2.1"
+sops_version="3.9.4"
+helmfile_version="0.170.1"
 shellcheck_version="0.10.0"
 dbeaver_version="24.3.2"
-yq_version="4.44.6"
-headlamp_version="0.27.0"
+yq_version="4.45.1"
+xq_version="1.3.0"
+headlamp_version="0.28.1"
 
-intellij_idea_version="2024.2.3"
-rider_version="2024.2.6"
-goland_version="2024.2.4"
-clion_version="2024.2.2"
+intellij_idea_version="2024.3.2.2"
+rider_version="2024.3.4"
+goland_version="2024.3.2.1"
+clion_version="2024.3.2"
 
 add_line_to_hosts "# Some entries integrated into Vagrant box"
 
@@ -282,7 +284,7 @@ fi
 # https://www.azul.com/downloads/?version=java-8-lts&os=centos&architecture=x86-64-bit&package=jdk-fx#zulu
 if [[ ! -e "${java8_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 8"
-  folder_name="zulu8.82.0.21-ca-fx-jdk8.0.432-linux_x64"
+  folder_name="zulu8.84.0.15-ca-fx-jdk8.0.442-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
@@ -297,7 +299,7 @@ fi
 # https://www.azul.com/downloads/?version=java-11-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
 if [[ ! -e "${java11_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 11"
-  folder_name="zulu11.76.21-ca-jdk11.0.25-linux_x64"
+  folder_name="zulu11.78.15-ca-jdk11.0.26-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
@@ -311,7 +313,7 @@ fi
 # https://www.azul.com/downloads/?version=java-17-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
 if [[ ! -e "${java17_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 17"
-  folder_name="zulu17.54.21-ca-jdk17.0.13-linux_x64"
+  folder_name="zulu17.56.15-ca-jdk17.0.14-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
@@ -320,6 +322,20 @@ if [[ ! -e "${java17_home}" ]]; then
   tar -xzf "${jdk_dist}" -C "${opt_bin_dir}"
   mv "${opt_bin_dir}/${folder_name}" "${java17_home}"
   chown -R root:root "${java17_home}"
+fi
+
+# https://www.azul.com/downloads/?version=java-21-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
+if [[ ! -e "${java21_home}" ]]; then
+  echo "=== Installing Azul Zulu CE JDK 21"
+  folder_name="zulu21.40.17-ca-jdk21.0.6-linux_x64"
+  fname="${folder_name}.tar.gz"
+  jdk_dist="${CACHE_DIR}/${fname}"
+  if [[ ! -e "${jdk_dist}" ]]; then
+    curl -sLf -o "${jdk_dist}" "https://cdn.azul.com/zulu/bin/${fname}"
+  fi
+  tar -xzf "${jdk_dist}" -C "${opt_bin_dir}"
+  mv "${opt_bin_dir}/${folder_name}" "${java21_home}"
+  chown -R root:root "${java21_home}"
 fi
 
 if [[ ! -e "${golang_home}" ]]; then
@@ -450,35 +466,32 @@ idea_plugin_dir="${user_home_dir}/.local/share/JetBrains/IntelliJIdea"
 install_jetbrains_plugin "${idea_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
   "https://downloads.marketplace.jetbrains.com/files/7391/658997/asciidoctor-intellij-plugin-0.43.6.zip"
 # Go (https://plugins.jetbrains.com/plugin/9568-go)
-install_jetbrains_plugin "${idea_plugin_dir}" "go-plugin-242.23339.11.zip" \
-  "https://plugins.jetbrains.com/files/9568/608453/go-plugin-242.23339.11.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "go-plugin-243.23654.117.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/9568/666746/go-plugin-243.23654.117.zip"
 # Go Template (https://plugins.jetbrains.com/plugin/10581-go-template)
-install_jetbrains_plugin "${idea_plugin_dir}" "go-template-242.20224.155.zip" \
-  "https://plugins.jetbrains.com/files/10581/579434/go-template-242.20224.155.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "go-template-243.21565.122.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10581/629973/go-template-243.21565.122.zip"
 # Batch Scripts Support (https://plugins.jetbrains.com/plugin/265-batch-scripts-support)
 install_jetbrains_plugin "${idea_plugin_dir}" "idea-batch-1.0.13.zip" \
-  "https://plugins.jetbrains.com/files/265/148140/idea-batch-1.0.13.zip"
-# Makefile Language (https://plugins.jetbrains.com/plugin/9333-makefile-language)
-install_jetbrains_plugin "${idea_plugin_dir}" "makefile-242.20224.155.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/9333/579456/makefile-242.20224.155.zip"
+  "https://downloads.marketplace.jetbrains.com/files/265/148140/idea-batch-1.0.13.zip"
 # PowerShell (https://plugins.jetbrains.com/plugin/10249-powershell)
 install_jetbrains_plugin "${idea_plugin_dir}" "PowerShell-2.8.0.zip" \
-  "https://plugins.jetbrains.com/files/10249/621620/PowerShell-2.8.0.zip"
+  "https://downloads.marketplace.jetbrains.com/files/10249/678045/PowerShell-2.9.0.zip"
 # Python Community Edition (https://plugins.jetbrains.com/plugin/7322-python-community-edition)
-install_jetbrains_plugin "${idea_plugin_dir}" "python-ce-242.23339.11.zip" \
-  "https://plugins.jetbrains.com/files/7322/608478/python-ce-242.23339.11.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "python-ce-243.23654.189.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7322/673130/python-ce-243.23654.189.zip"
 # Python (https://plugins.jetbrains.com/plugin/631-python)
-install_jetbrains_plugin "${idea_plugin_dir}" "python-242.23339.11.zip" \
-  "https://plugins.jetbrains.com/files/631/608464/python-242.23339.11.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "python-243.23654.189.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/631/673131/python-243.23654.189.zip"
 # Ruby (https://plugins.jetbrains.com/plugin/1293-ruby)
-install_jetbrains_plugin "${idea_plugin_dir}" "ruby-242.23339.11.zip" \
-  "https://plugins.jetbrains.com/files/1293/608457/ruby-242.23339.11.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "ruby-243.23654.189.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/1293/673126/ruby-243.23654.189.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
 install_jetbrains_plugin "${idea_plugin_dir}" "StringToolsPlugin-4.22.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
-install_jetbrains_plugin "${idea_plugin_dir}" "terraform-242.23339.11.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7808/608451/terraform-242.23339.11.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "terraform-243.23654.44.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7808/656639/terraform-243.23654.44.zip"
 
 rider_home="${opt_bin_dir}/rider"
 if [[ ! -e "${rider_home}" ]]; then
@@ -512,22 +525,22 @@ fi
 rider_plugin_dir="${user_home_dir}/.local/share/JetBrains/Rider"
 # AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
 install_jetbrains_plugin "${rider_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
-  "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.6.zip"
+  "https://downloads.marketplace.jetbrains.com/files/7391/658997/asciidoctor-intellij-plugin-0.43.6.zip"
 # Go Template (https://plugins.jetbrains.com/plugin/10581-go-template)
-install_jetbrains_plugin "${rider_plugin_dir}" "go-template-242.20224.155.zip" \
-  "https://plugins.jetbrains.com/files/10581/579434/go-template-242.20224.155.zip"
+install_jetbrains_plugin "${rider_plugin_dir}" "go-template-243.21565.122.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10581/629973/go-template-243.21565.122.zip"
 # Makefile Language (https://plugins.jetbrains.com/plugin/9333-makefile-language)
-install_jetbrains_plugin "${rider_plugin_dir}" "makefile-242.20224.155.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/9333/579456/makefile-242.20224.155.zip"
+install_jetbrains_plugin "${rider_plugin_dir}" "makefile-243.23654.19.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/9333/654848/makefile-243.23654.19.zip"
 # PowerShell (https://plugins.jetbrains.com/plugin/10249-powershell)
 install_jetbrains_plugin "${rider_plugin_dir}" "PowerShell-2.8.0.zip" \
-  "https://plugins.jetbrains.com/files/10249/621620/PowerShell-2.8.0.zip"
+  "https://downloads.marketplace.jetbrains.com/files/10249/678045/PowerShell-2.9.0.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
 install_jetbrains_plugin "${rider_plugin_dir}" "StringToolsPlugin-4.22.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
-# Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
-install_jetbrains_plugin "${rider_plugin_dir}" "terraform-242.23339.11.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7808/608451/terraform-242.23339.11.zip"
+# Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl)
+install_jetbrains_plugin "${rider_plugin_dir}" "terraform-243.23654.44.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7808/656639/terraform-243.23654.44.zip"
 
 goland_home="${opt_bin_dir}/goland"
 if [[ ! -e "${goland_home}" ]]; then
@@ -561,19 +574,19 @@ fi
 goland_plugin_dir="${user_home_dir}/.local/share/JetBrains/GoLand"
 # AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
 install_jetbrains_plugin "${goland_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
-  "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.6.zip"
+  "https://downloads.marketplace.jetbrains.com/files/7391/658997/asciidoctor-intellij-plugin-0.43.6.zip"
 # Batch Scripts Support (https://plugins.jetbrains.com/plugin/265-batch-scripts-support)
 install_jetbrains_plugin "${goland_plugin_dir}" "idea-batch-1.0.13.zip" \
-  "https://plugins.jetbrains.com/files/265/148140/idea-batch-1.0.13.zip"
+  "https://downloads.marketplace.jetbrains.com/files/265/148140/idea-batch-1.0.13.zip"
 # PowerShell (https://plugins.jetbrains.com/plugin/10249-powershell)
 install_jetbrains_plugin "${goland_plugin_dir}" "PowerShell-2.8.0.zip" \
-  "https://plugins.jetbrains.com/files/10249/621620/PowerShell-2.8.0.zip"
+  "https://downloads.marketplace.jetbrains.com/files/10249/678045/PowerShell-2.9.0.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
 install_jetbrains_plugin "${goland_plugin_dir}" "StringToolsPlugin-4.22.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
-install_jetbrains_plugin "${goland_plugin_dir}" "terraform-242.23339.11.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7808/608451/terraform-242.23339.11.zip"
+install_jetbrains_plugin "${goland_plugin_dir}" "terraform-243.23654.44.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7808/656639/terraform-243.23654.44.zip"
 
 clion_home="${opt_bin_dir}/clion"
 if [[ ! -e "${clion_home}" ]]; then
@@ -609,14 +622,14 @@ clion_plugin_dir="${user_home_dir}/.local/share/JetBrains/CLion"
 install_jetbrains_plugin "${clion_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
   "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.6.zip"
 # Kubernetes (https://plugins.jetbrains.com/plugin/10485-kubernetes)
-install_jetbrains_plugin "${clion_plugin_dir}" "clouds-kubernetes-242.22855.92.zip" \
-  "https://plugins.jetbrains.com/files/10485/605758/clouds-kubernetes-242.22855.92.zip"
+install_jetbrains_plugin "${clion_plugin_dir}" "clouds-kubernetes-243.23654.116.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10485/666479/clouds-kubernetes-243.23654.116.zip"
 # Go Template (https://plugins.jetbrains.com/plugin/10581-go-template)
-install_jetbrains_plugin "${clion_plugin_dir}" "go-template-242.20224.155.zip" \
-  "https://plugins.jetbrains.com/files/10581/579434/go-template-242.20224.155.zip"
+install_jetbrains_plugin "${clion_plugin_dir}" "go-template-243.21565.122.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10581/629973/go-template-243.21565.122.zip"
 # PowerShell (https://plugins.jetbrains.com/plugin/10249-powershell)
 install_jetbrains_plugin "${clion_plugin_dir}" "PowerShell-2.8.0.zip" \
-  "https://plugins.jetbrains.com/files/10249/621620/PowerShell-2.8.0.zip"
+  "https://downloads.marketplace.jetbrains.com/files/10249/678045/PowerShell-2.9.0.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
 install_jetbrains_plugin "${clion_plugin_dir}" "StringToolsPlugin-4.22.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
@@ -946,6 +959,7 @@ chmod 644 "${provision_certs_dir}"/*
 "${opt_bin_dir}/scripts/code_plugin.sh" 'ms-vscode-remote.remote-containers'          "${VM_USER}" 10
 "${opt_bin_dir}/scripts/code_plugin.sh" 'HashiCorp.terraform'                         "${VM_USER}" 10
 "${opt_bin_dir}/scripts/code_plugin.sh" 'HashiCorp.HCL'                               "${VM_USER}" 10
+"${opt_bin_dir}/scripts/code_plugin.sh" 'golang.Go'                                   "${VM_USER}" 10
 
 # Install .NET tools for VM_USER user
 sudo -H -i -u "${VM_USER}" dotnet tool install -g dotnet-reportgenerator-globaltool
@@ -1030,6 +1044,22 @@ if ! which yq &>/dev/null; then
   mv "$(dirname "${yq_file}")/${yq_filename}_${yq_platform}" "${yq_file}"
   chmod a+x "${yq_file}"
   chown root:root "${yq_file}"
+fi
+
+# Install xq tool (https://github.com/sibprogrammer/xq)
+if ! which xq &>/dev/null; then
+  xq_filename="xq"
+  xq_file="${usr_local_bin_dir}/${xq_filename}"
+  xq_platform="linux_amd64"
+  xq_dist_filename="xq_${xq_version}_${xq_platform}.tar.gz"
+  xq_dist="${CACHE_DIR}/${xq_dist_filename}"
+  if [[ ! -f "${xq_dist}" ]]; then
+    curl -sLf -o "${xq_dist}" \
+      "https://github.com/sibprogrammer/xq/releases/download/v${xq_version}/${xq_filename}_${xq_version}_${xq_platform}.tar.gz"
+  fi
+  tar -xf "${xq_dist}" -C "$(dirname "${xq_file}")" "${xq_filename}"
+  chmod a+x "${xq_file}"
+  chown root:root "${xq_file}"
 fi
 
 # Headlamp (https://headlamp.dev/)

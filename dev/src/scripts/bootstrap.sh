@@ -257,7 +257,7 @@ if [[ -f "${docker_daemon_config}" ]]; then
   systemctl start docker
 fi
 
-echo "export MINIKUBE_HOME=/ws/.minikube" >>/etc/profile.d/localenv.sh
+echo "export MINIKUBE_HOME=$(printf "%q" "${ws_disk_mount_path}/.minikube")" >>/etc/profile.d/localenv.sh
 
 # Nautilus bookmarks
 nautilus_user_bookmark_file="${user_home_dir}/.config/gtk-3.0/bookmarks"
