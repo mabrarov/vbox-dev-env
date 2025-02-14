@@ -82,6 +82,7 @@ shellcheck_version="0.10.0"
 dbeaver_version="24.3.2"
 yq_version="4.45.1"
 xq_version="1.3.0"
+direnv_version="2.35.0"
 headlamp_version="0.28.1"
 
 intellij_idea_version="2024.3.2.2"
@@ -1002,6 +1003,24 @@ if ! which xq &>/dev/null; then
   tar -xf "${xq_dist}" -C "$(dirname "${xq_file}")" "${xq_filename}"
   chmod a+x "${xq_file}"
   chown root:root "${xq_file}"
+fi
+
+# direnv (https://direnv.net/)
+if ! which direnv &>/dev/null; then
+  direnv_filename="direnv"
+  direnv_file="${usr_local_bin_dir}/${direnv_filename}"
+  direnv_platform="linux-amd64"
+  direnv_dist_filename="direnv_${direnv_version}_${direnv_platform}"
+  direnv_dist="${CACHE_DIR}/${direnv_dist_filename}"
+  if [[ ! -f "${direnv_dist}" ]]; then
+    curl -sLf -o "${direnv_dist}" \
+      "https://github.com/direnv/direnv/releases/download/v${direnv_version}/direnv.${direnv_platform}"
+  fi
+  cp --no-preserve=all "${direnv_dist}" "${direnv_file}"
+  chmod u=rwx,g=rx,o=rx "${direnv_file}"
+  chown root:root "${direnv_file}"
+  # shellcheck disable=SC2016
+  echo 'eval "$(direnv hook bash)"' >>"${user_home_dir}/.bashrc"
 fi
 
 # Headlamp (https://headlamp.dev/)
