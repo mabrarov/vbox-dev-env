@@ -19,7 +19,7 @@ variable "vm_name" {
 
 variable "vm_version" {
   type        = string
-  default     = "1.0.5"
+  default     = "1.0.6"
   description = "Version of Vagrant box"
 }
 
