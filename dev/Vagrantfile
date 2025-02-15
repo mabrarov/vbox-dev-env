@@ -1,6 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+private_network_address="192.168.56.64"
 box_user = "user"
 box_password = "user"
 provision_content_destination_dir = "/tmp/dev"
@@ -18,6 +19,7 @@ containers_disk = vbox_default_vm_dir + "/containers.vmdk"
 Vagrant.configure("2") do |config|
   vm_name = "dev"
   config.vm.box = "rocky-dev"
+  config.vm.network "private_network", ip: private_network_address
 
   # TODO: create repository for Vagrant boxes and provide link to repository
   #config.vm.box_url = "http://..."
@@ -29,7 +31,8 @@ Vagrant.configure("2") do |config|
       "VAGRANT_BOX_USER" => box_user,
       "VAGRANT_BOX_PASSWORD" => box_password,
       "VAGRANT_BOX_USER_GROUP" => box_user,
-      "PROVISION_CONTENT_DIR" => provision_content_destination_dir
+      "PROVISION_CONTENT_DIR" => provision_content_destination_dir,
+      "PRIVATE_NETWORK_ADDRESS" => private_network_address
     }
   end
 
