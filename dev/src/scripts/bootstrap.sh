@@ -50,6 +50,10 @@ function escape_text_for_sed() {
   echo "${text}"
 }
 
+function add_line_to_hosts() {
+  grep -q -F "$1" /etc/hosts || echo "$1" >>/etc/hosts
+}
+
 user_home_dir="/home/${VAGRANT_BOX_USER}"
 
 # Default name of OS account. Matches with base VM defined in Vagrantfile (refer to config.vm.box)
@@ -69,6 +73,9 @@ if [[ -f "${customization_script_file}" ]]; then
   source "${customization_script_file}"
   rm -f "${customization_script_file}"
 fi
+
+# Map hostname to private network address
+add_line_to_hosts "${PRIVATE_NETWORK_ADDRESS}    ${HOSTNAME}"
 
 # Copy SSH private keys ("${PROVISION_CONTENT_DIR}"/.ssh/id_rsa*, "${PROVISION_CONTENT_DIR}"/.ssh/id_ed* -> ${user_home_dir}/.ssh/)
 ssh_user_config_dir="${user_home_dir}/.ssh"
