@@ -1,6 +1,15 @@
 <application>
   <component name="ProjectManager">
     <defaultProject>
+      <component name="MavenImportPreferences">
+        <option name="generalSettings">
+          <MavenGeneralSettings>
+            <option name="customMavenHome" value="/opt/maven" />
+            <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+          </MavenGeneralSettings>
+        </option>
+      </component>
+      <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="21" project-jdk-type="JavaSDK" />
       <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "go.import.settings.migrated": "true",
