@@ -464,7 +464,7 @@ idea_plugin_dir="${user_home_dir}/.local/share/JetBrains/IntelliJIdea"
 # AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
 install_jetbrains_plugin "${idea_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
   "https://downloads.marketplace.jetbrains.com/files/7391/658997/asciidoctor-intellij-plugin-0.43.6.zip"
-# Makefile (https://plugins.jetbrains.com/plugin/9333-makefile-language)
+# Makefile Language (https://plugins.jetbrains.com/plugin/9333-makefile-language)
 install_jetbrains_plugin "${idea_plugin_dir}" "makefile-243.23654.19.zip" \
   "https://downloads.marketplace.jetbrains.com/files/9333/654848/makefile-243.23654.19.zip"
 # Go (https://plugins.jetbrains.com/plugin/9568-go)
