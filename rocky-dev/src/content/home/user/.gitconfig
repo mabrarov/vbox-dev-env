@@ -2,7 +2,7 @@
         name = {name}
         email = {email}
 [core]
-        autocrlf = input
+        autocrlf = false
         excludesfile = /home/user/.gitignore_global
         editor = vim
 [push]
