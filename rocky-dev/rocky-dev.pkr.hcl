@@ -37,7 +37,7 @@ variable "base_ova_name" {
 
 variable "base_ova_version" {
   type        = string
-  default     = "1.0.4"
+  default     = "1.0.5"
   description = "Version of base OVA"
 }
 
