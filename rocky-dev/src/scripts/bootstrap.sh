@@ -108,7 +108,6 @@ echo "export ANT_HOME=$(printf "%q" "${ANT_HOME}")" >>"${etc_profile_env_script}
 echo "export DOCKER_TLS_VERIFY=" >>"${etc_profile_env_script}"
 echo "export M2_HOME=$(printf "%q" "${M2_HOME}")" >>"${etc_profile_env_script}"
 echo "export MAVEN_OPTS=$(printf "%q" "${MAVEN_OPTS}")" >>"${etc_profile_env_script}"
-echo "export GOROOT=$(printf "%q" "${golang_home}")" >>"${etc_profile_env_script}"
 echo "export GOPATH=$(printf "%q" "${repository_dir}/go")" >>"${etc_profile_env_script}"
 echo "pathmunge $(printf "%q" "${golang_home}/bin")" >>"${etc_profile_env_script}"
 echo "pathmunge $(printf "%q" "${groovy_home}/bin")" >>"${etc_profile_env_script}"
