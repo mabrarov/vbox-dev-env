@@ -84,10 +84,10 @@ yq_version="4.45.1"
 xq_version="1.3.0"
 headlamp_version="0.28.1"
 
-intellij_idea_version="2024.3.2.2"
-rider_version="2024.3.4"
-goland_version="2024.3.2.1"
-clion_version="2024.3.2"
+intellij_idea_version="2024.3.5"
+rider_version="2024.3.6"
+goland_version="2024.3.5"
+clion_version="2024.3.5"
 
 add_line_to_hosts "# Some entries integrated into Vagrant box"
 
@@ -468,8 +468,8 @@ install_jetbrains_plugin "${idea_plugin_dir}" "asciidoctor-intellij-plugin-0.43.
 install_jetbrains_plugin "${idea_plugin_dir}" "makefile-243.23654.19.zip" \
   "https://downloads.marketplace.jetbrains.com/files/9333/654848/makefile-243.23654.19.zip"
 # Go (https://plugins.jetbrains.com/plugin/9568-go)
-install_jetbrains_plugin "${idea_plugin_dir}" "go-plugin-243.23654.117.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/9568/666746/go-plugin-243.23654.117.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "go-plugin-243.26053.27.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/9568/700127/go-plugin-243.26053.27.zip"
 # Go Template (https://plugins.jetbrains.com/plugin/10581-go-template)
 install_jetbrains_plugin "${idea_plugin_dir}" "go-template-243.21565.122.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10581/629973/go-template-243.21565.122.zip"
@@ -480,20 +480,20 @@ install_jetbrains_plugin "${idea_plugin_dir}" "idea-batch-1.0.13.zip" \
 install_jetbrains_plugin "${idea_plugin_dir}" "PowerShell-2.8.0.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10249/678045/PowerShell-2.9.0.zip"
 # Python Community Edition (https://plugins.jetbrains.com/plugin/7322-python-community-edition)
-install_jetbrains_plugin "${idea_plugin_dir}" "python-ce-243.23654.189.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7322/673130/python-ce-243.23654.189.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "python-ce-243.24978.46.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7322/680217/python-ce-243.24978.46.zip"
 # Python (https://plugins.jetbrains.com/plugin/631-python)
-install_jetbrains_plugin "${idea_plugin_dir}" "python-243.23654.189.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/631/673131/python-243.23654.189.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "python-243.26053.27.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/631/700118/python-243.26053.27.zip"
 # Ruby (https://plugins.jetbrains.com/plugin/1293-ruby)
-install_jetbrains_plugin "${idea_plugin_dir}" "ruby-243.23654.189.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/1293/673126/ruby-243.23654.189.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "ruby-243.26053.27.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/1293/700107/ruby-243.26053.27.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
 install_jetbrains_plugin "${idea_plugin_dir}" "StringToolsPlugin-4.22.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
-install_jetbrains_plugin "${idea_plugin_dir}" "terraform-243.23654.44.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7808/656639/terraform-243.23654.44.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "terraform-243.25659.42.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7808/688185/terraform-243.25659.42.zip"
 
 rider_home="${opt_bin_dir}/rider"
 if [[ ! -e "${rider_home}" ]]; then
@@ -541,8 +541,8 @@ install_jetbrains_plugin "${rider_plugin_dir}" "PowerShell-2.8.0.zip" \
 install_jetbrains_plugin "${rider_plugin_dir}" "StringToolsPlugin-4.22.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl)
-install_jetbrains_plugin "${rider_plugin_dir}" "terraform-243.23654.44.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7808/656639/terraform-243.23654.44.zip"
+install_jetbrains_plugin "${rider_plugin_dir}" "terraform-243.25659.42.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7808/688185/terraform-243.25659.42.zip"
 
 goland_home="${opt_bin_dir}/goland"
 if [[ ! -e "${goland_home}" ]]; then
@@ -587,8 +587,8 @@ install_jetbrains_plugin "${goland_plugin_dir}" "PowerShell-2.8.0.zip" \
 install_jetbrains_plugin "${goland_plugin_dir}" "StringToolsPlugin-4.22.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
-install_jetbrains_plugin "${goland_plugin_dir}" "terraform-243.23654.44.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7808/656639/terraform-243.23654.44.zip"
+install_jetbrains_plugin "${goland_plugin_dir}" "terraform-243.25659.42.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7808/688185/terraform-243.25659.42.zip"
 
 clion_home="${opt_bin_dir}/clion"
 if [[ ! -e "${clion_home}" ]]; then
@@ -624,8 +624,8 @@ clion_plugin_dir="${user_home_dir}/.local/share/JetBrains/CLion"
 install_jetbrains_plugin "${clion_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
   "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.6.zip"
 # Kubernetes (https://plugins.jetbrains.com/plugin/10485-kubernetes)
-install_jetbrains_plugin "${clion_plugin_dir}" "clouds-kubernetes-243.23654.116.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10485/666479/clouds-kubernetes-243.23654.116.zip"
+install_jetbrains_plugin "${clion_plugin_dir}" "clouds-kubernetes-243.24978.79.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10485/684423/clouds-kubernetes-243.24978.79.zip"
 # Go Template (https://plugins.jetbrains.com/plugin/10581-go-template)
 install_jetbrains_plugin "${clion_plugin_dir}" "go-template-243.21565.122.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10581/629973/go-template-243.21565.122.zip"
