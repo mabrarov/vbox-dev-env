@@ -85,7 +85,7 @@ xq_version="1.3.0"
 headlamp_version="0.28.1"
 
 intellij_idea_version="2024.3.5"
-rider_version="2024.3.4"
+rider_version="2024.3.6"
 goland_version="2024.3.2.1"
 clion_version="2024.3.2"
 
@@ -541,8 +541,8 @@ install_jetbrains_plugin "${rider_plugin_dir}" "PowerShell-2.8.0.zip" \
 install_jetbrains_plugin "${rider_plugin_dir}" "StringToolsPlugin-4.22.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10066/668907/StringToolsPlugin-4.22.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl)
-install_jetbrains_plugin "${rider_plugin_dir}" "terraform-243.23654.44.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7808/656639/terraform-243.23654.44.zip"
+install_jetbrains_plugin "${rider_plugin_dir}" "terraform-243.25659.42.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7808/688185/terraform-243.25659.42.zip"
 
 goland_home="${opt_bin_dir}/goland"
 if [[ ! -e "${goland_home}" ]]; then
