@@ -87,7 +87,7 @@ headlamp_version="0.28.1"
 intellij_idea_version="2024.3.5"
 rider_version="2024.3.6"
 goland_version="2024.3.5"
-clion_version="2024.3.2"
+clion_version="2024.3.5"
 
 add_line_to_hosts "# Some entries integrated into Vagrant box"
 
@@ -624,8 +624,8 @@ clion_plugin_dir="${user_home_dir}/.local/share/JetBrains/CLion"
 install_jetbrains_plugin "${clion_plugin_dir}" "asciidoctor-intellij-plugin-0.43.6.zip" \
   "https://plugins.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.43.6.zip"
 # Kubernetes (https://plugins.jetbrains.com/plugin/10485-kubernetes)
-install_jetbrains_plugin "${clion_plugin_dir}" "clouds-kubernetes-243.23654.116.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10485/666479/clouds-kubernetes-243.23654.116.zip"
+install_jetbrains_plugin "${clion_plugin_dir}" "clouds-kubernetes-243.24978.79.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10485/684423/clouds-kubernetes-243.24978.79.zip"
 # Go Template (https://plugins.jetbrains.com/plugin/10581-go-template)
 install_jetbrains_plugin "${clion_plugin_dir}" "go-template-243.21565.122.zip" \
   "https://downloads.marketplace.jetbrains.com/files/10581/629973/go-template-243.21565.122.zip"
