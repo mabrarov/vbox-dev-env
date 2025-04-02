@@ -239,6 +239,7 @@ make_dir "${MY_USER}" "${VAGRANT_BOX_USER_GROUP}" 755 "${repository_disk_mount_p
 make_dir "${MY_USER}" "${VAGRANT_BOX_USER_GROUP}" 755 "${repository_disk_mount_path}/npm/npm-cache"
 make_dir "${MY_USER}" "${VAGRANT_BOX_USER_GROUP}" 755 "${repository_disk_mount_path}/go"
 make_dir "${MY_USER}" "${VAGRANT_BOX_USER_GROUP}" 755 "${repository_disk_mount_path}/go/bin"
+make_dir "${MY_USER}" "${VAGRANT_BOX_USER_GROUP}" 755 "${repository_disk_mount_path}/cache"
 make_dir "${MY_USER}" "${VAGRANT_BOX_USER_GROUP}" 755 "${repository_disk_mount_path}/nuget/packages"
 
 # Refer to https://gist.github.com/leifg/4713995?permalink_comment_id=1615625#gistcomment-1615625
