@@ -2,18 +2,54 @@
   <component name="CachedDictionaryState">
     <words>
       <w>abrarov</w>
+      <w>bufbuild</w>
+      <w>buildkit</w>
+      <w>certdir</w>
+      <w>crit</w>
+      <w>databus</w>
+      <w>dbconn</w>
+      <w>dbstring</w>
+      <w>enumcase</w>
+      <w>envrc</w>
+      <w>execrows</w>
+      <w>filestorages</w>
       <w>gocilint</w>
       <w>goexe</w>
       <w>gofumpt</w>
       <w>golangci</w>
       <w>golog</w>
+      <w>goprivate</w>
+      <w>gosec</w>
+      <w>govulncheck</w>
+      <w>healthz</w>
       <w>helmfile</w>
       <w>helmignore</w>
       <w>infradesk</w>
       <w>otel</w>
       <w>otlp</w>
+      <w>ipcbus</w>
+      <w>isready</w>
+      <w>loglvl</w>
+      <w>mainstorage</w>
+      <w>makeflags</w>
+      <w>msgtype</w>
+      <w>pgdata</w>
+      <w>pgport</w>
+      <w>pguser</w>
+      <w>plusc</w>
+      <w>plusg</w>
+      <w>precommit</w>
+      <w>prettylog</w>
+      <w>readback</w>
+      <w>readbacktoken</w>
+      <w>securego</w>
+      <w>sqlc</w>
+      <w>staticcheck</w>
+      <w>testcontainers</w>
       <w>vboxsf</w>
+      <w>vuln</w>
       <w>xpack</w>
+      <w>zerolog</w>
     </words>
   </component>
 </application>
