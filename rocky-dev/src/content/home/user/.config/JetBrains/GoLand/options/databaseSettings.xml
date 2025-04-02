@@ -1,0 +1,20 @@
+<application>
+  <component name="DatabaseSettings" version="10">
+    <text-mode>
+      <parameter-patterns>
+        <parameter-pattern value="#(\w+)#" in-scripts="true" scope="XML" predefined="#name#" />
+        <parameter-pattern value="(?&lt;=\W|\A)\$(\d+|[a-zA-Z_](?:\w|\.)*)\$?(?=\W|\z)" in-scripts="true" scope="*,-SQL" predefined="$a.b.c$?" />
+        <parameter-pattern value="(?&lt;=\W|\A)#(\d+|[a-zA-Z_](?:\w|\.)*)#?(?=\W|\z)" in-scripts="true" scope="*,-SQL" predefined="#a.b.c#?" />
+        <parameter-pattern value="%\((\w+)\)s" in-scripts="true" scope="Python" predefined="%(name)s" />
+        <parameter-pattern value="%\w+" in-scripts="true" scope="JAVA,Python,PHP" predefined="%name" />
+        <parameter-pattern value="\:\'.*\'" in-scripts="true" scope="PostgreSQL" predefined=":'name'" />
+        <parameter-pattern value="\$\{([^\{\}]*)\}" in-scripts="true" predefined="${name}" />
+        <parameter-pattern value="\$\(([^\)]+)\)" in-scripts="true" predefined="$(name)" />
+        <parameter-pattern value="\$[0-9]+" in-scripts="true" scope="SQL" />
+        <parameter-pattern value="sqlc\.n?arg\((\'\w+\'|\w+)\)" in-scripts="true" in-literals="false" scope="SQL" />
+        <parameter-pattern value="@\w+" in-scripts="true" in-literals="false" scope="SQL" />
+        <parameter-pattern value="sqlc\.embed\((\'\w+\'|\w+)\)" in-scripts="true" in-literals="false" scope="SQL" />
+      </parameter-patterns>
+    </text-mode>
+  </component>
+</application>
