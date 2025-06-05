@@ -326,7 +326,7 @@ fi
 # https://www.azul.com/downloads/?version=java-21-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
 if [[ ! -e "${java21_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 21"
-  folder_name="zulu21.40.17-ca-jdk21.0.6-linux_x64"
+  folder_name="zulu21.42.19-ca-jdk21.0.7-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
