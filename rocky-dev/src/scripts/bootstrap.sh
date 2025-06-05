@@ -67,7 +67,7 @@ gradle_home="${opt_bin_dir}/gradle"
 groovy_version="4.0.24"
 groovy_home="${opt_bin_dir}/groovy"
 
-golang_version="1.24.3"
+golang_version="1.24.4"
 golang_home="${opt_bin_dir}/go"
 
 docker_compose_version="2.32.4"
