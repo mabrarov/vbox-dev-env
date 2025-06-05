@@ -64,7 +64,7 @@ export MAVEN_OPTS='-Djava.net.preferIPv4Stack=true -Xms512m -Xmx2048m -Daether.s
 gradle_version="7.6.5"
 gradle_home="${opt_bin_dir}/gradle"
 
-groovy_version="4.0.24"
+groovy_version="4.0.27"
 groovy_home="${opt_bin_dir}/groovy"
 
 golang_version="1.24.4"
