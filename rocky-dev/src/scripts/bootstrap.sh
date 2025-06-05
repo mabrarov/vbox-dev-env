@@ -61,7 +61,7 @@ maven_version="3.9.8"
 export M2_HOME="${opt_bin_dir}/maven"
 export MAVEN_OPTS='-Djava.net.preferIPv4Stack=true -Xms512m -Xmx2048m -Daether.syncContext.named.factory=rwlock-redisson -Daether.syncContext.named.time=300'
 
-gradle_version="7.6.4"
+gradle_version="7.6.5"
 gradle_home="${opt_bin_dir}/gradle"
 
 groovy_version="4.0.24"
