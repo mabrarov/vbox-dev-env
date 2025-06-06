@@ -61,28 +61,28 @@ maven_version="3.9.8"
 export M2_HOME="${opt_bin_dir}/maven"
 export MAVEN_OPTS='-Djava.net.preferIPv4Stack=true -Xms512m -Xmx2048m -Daether.syncContext.named.factory=rwlock-redisson -Daether.syncContext.named.time=300'
 
-gradle_version="7.6.4"
+gradle_version="7.6.5"
 gradle_home="${opt_bin_dir}/gradle"
 
-groovy_version="4.0.24"
+groovy_version="4.0.27"
 groovy_home="${opt_bin_dir}/groovy"
 
-golang_version="1.24.1"
+golang_version="1.24.4"
 golang_home="${opt_bin_dir}/go"
 
-docker_compose_version="2.32.4"
-kubectl_version="1.32.1"
-minikube_version="1.35.0"
-helm_version="3.17.0"
-helm_secrets_plugin_version="4.6.2"
+docker_compose_version="2.37.0"
+kubectl_version="1.33.1"
+minikube_version="1.36.0"
+helm_version="3.18.2"
+helm_secrets_plugin_version="4.6.5"
 age_version="1.2.1"
-sops_version="3.9.4"
-helmfile_version="0.170.1"
+sops_version="3.10.2"
+helmfile_version="1.1.1"
 shellcheck_version="0.10.0"
-dbeaver_version="24.3.2"
-yq_version="4.45.1"
+dbeaver_version="25.1.0"
+yq_version="4.45.4"
 xq_version="1.3.0"
-direnv_version="2.35.0"
+direnv_version="2.36.0"
 headlamp_version="0.28.1"
 
 intellij_idea_version="2024.3.5"
@@ -283,7 +283,7 @@ fi
 # https://www.azul.com/downloads/?version=java-8-lts&os=centos&architecture=x86-64-bit&package=jdk-fx#zulu
 if [[ ! -e "${java8_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 8"
-  folder_name="zulu8.84.0.15-ca-fx-jdk8.0.442-linux_x64"
+  folder_name="zulu8.86.0.25-ca-fx-jdk8.0.452-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
@@ -298,7 +298,7 @@ fi
 # https://www.azul.com/downloads/?version=java-11-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
 if [[ ! -e "${java11_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 11"
-  folder_name="zulu11.78.15-ca-jdk11.0.26-linux_x64"
+  folder_name="zulu11.80.21-ca-jdk11.0.27-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
@@ -312,7 +312,7 @@ fi
 # https://www.azul.com/downloads/?version=java-17-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
 if [[ ! -e "${java17_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 17"
-  folder_name="zulu17.56.15-ca-jdk17.0.14-linux_x64"
+  folder_name="zulu17.58.21-ca-jdk17.0.15-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
@@ -326,7 +326,7 @@ fi
 # https://www.azul.com/downloads/?version=java-21-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
 if [[ ! -e "${java21_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 21"
-  folder_name="zulu21.40.17-ca-jdk21.0.6-linux_x64"
+  folder_name="zulu21.42.19-ca-jdk21.0.7-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
@@ -339,7 +339,6 @@ fi
 
 if [[ ! -e "${golang_home}" ]]; then
   echo "=== Installing Go"
-  folder_name="go${golang_version}.linux-amd64.tar.gz"
   fname="go${golang_version}.linux-amd64.tar.gz"
   golang_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${golang_dist}" ]]; then
