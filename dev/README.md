@@ -77,6 +77,8 @@ MY_EMAIL="firstname.lastname@localdomain.local"
 # For India it could be: Asia/Calcutta
 # For US it could be: US/Eastern (other possible US timezones can be found in /usr/share/zoneinfo/US folder)
 MY_TIMEZONE="Europe/Moscow"
+# Go Modules private repository
+MY_GOLANG_PRIVATE_REPOSITORY="gitlab.domain.com"
 ```
 
 ## VM creation
