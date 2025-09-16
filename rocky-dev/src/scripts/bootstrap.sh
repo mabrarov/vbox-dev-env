@@ -70,7 +70,7 @@ groovy_home="${opt_bin_dir}/groovy"
 golang_version="1.24.7"
 golang_home="${opt_bin_dir}/go"
 
-docker_compose_version="2.37.0"
+docker_compose_version="2.39.3"
 kubectl_version="1.33.1"
 minikube_version="1.36.0"
 helm_version="3.18.2"
