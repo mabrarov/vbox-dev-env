@@ -71,7 +71,7 @@ golang_version="1.24.7"
 golang_home="${opt_bin_dir}/go"
 
 docker_compose_version="2.39.3"
-kubectl_version="1.33.1"
+kubectl_version="1.34.1"
 minikube_version="1.36.0"
 helm_version="3.18.2"
 helm_secrets_plugin_version="4.6.5"
