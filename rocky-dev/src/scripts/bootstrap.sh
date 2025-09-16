@@ -54,7 +54,7 @@ java21_home="${opt_bin_dir}/jdk-21"
 export JAVA_HOME="${java17_home}"
 
 export ANT_HOME="${opt_bin_dir}/ant"
-ant_version="1.10.14"
+ant_version="1.10.15"
 ant_contrib_version=1.0b3
 
 maven_version="3.9.8"
