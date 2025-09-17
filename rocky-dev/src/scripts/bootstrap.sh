@@ -1030,11 +1030,6 @@ if [[ ! -e "${headlamp_home}" ]]; then
   chown -R root:root "${opt_bin_dir}/headlamp"
 fi
 
-if ! which lens-desktop &>/dev/null; then
-  dnf config-manager -y --add-repo https://downloads.k8slens.dev/rpm/lens.repo
-  dnf install -y lens
-fi
-
 # Change host name to avoid resolution of host name (default is localhost.localdomain) to 127.0.0.1
 hostnamectl set-hostname dev.localdomain.local
 
