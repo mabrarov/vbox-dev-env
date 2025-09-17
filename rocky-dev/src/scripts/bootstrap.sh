@@ -588,18 +588,8 @@ install_jetbrains_plugin "${clion_plugin_dir}" "StringToolsPlugin-4.22.zip" \
 
 if ! which node &>/dev/null; then
   echo "=== Installing NodeJS"
-  cat <<EOF >'/etc/yum.repos.d/nodesource-el9.repo'
-[nodesource-nodejs]
-name=Node.js Packages for Linux RPM based distros - x86_64
-baseurl=https://rpm.nodesource.com/pub_22.x/nodistro/nodejs/x86_64
-priority=9
-enabled=1
-gpgcheck=1
-gpgkey=https://rpm.nodesource.com/gpgkey/ns-operations-public.key
-module_hotfixes=1
-EOF
-  rpm --import 'https://rpm.nodesource.com/gpgkey/ns-operations-public.key'
-  dnf install --enablerepo=nodesource-nodejs -y nodejs
+  dnf module enable -y nodejs:22
+  dnf install -y nodejs npm
 fi
 
 if ! which code &>/dev/null; then
