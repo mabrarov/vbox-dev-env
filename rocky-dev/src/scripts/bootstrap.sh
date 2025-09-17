@@ -57,7 +57,7 @@ export ANT_HOME="${opt_bin_dir}/ant"
 ant_version="1.10.15"
 ant_contrib_version=1.0b3
 
-maven_version="3.9.8"
+maven_version="3.9.11"
 export M2_HOME="${opt_bin_dir}/maven"
 export MAVEN_OPTS='-Djava.net.preferIPv4Stack=true -Xms512m -Xmx2048m'
 
@@ -388,7 +388,7 @@ if [[ ! -e "${M2_HOME}" ]]; then
   maven_dist="${CACHE_DIR}/apache-maven-${maven_version}-bin.tar.gz"
   if [[ ! -e "${maven_dist}" ]]; then
     curl -sLf -o "${maven_dist}" \
-      "http://mirror.reverse.net/pub/apache/maven/maven-$(echo "${maven_version}" | sed -r 's/([0-9]+)\..*/\1/')/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz"
+      "https://dlcdn.apache.org/maven/maven-$(echo "${maven_version}" | sed -r 's/([0-9]+)\..*/\1/')/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz"
   fi
   tar -xzf "${maven_dist}" -C "${opt_bin_dir}"
   mv "${opt_bin_dir}/apache-maven-${maven_version}" "${M2_HOME}"
