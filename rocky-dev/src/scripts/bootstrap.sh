@@ -59,7 +59,7 @@ ant_contrib_version=1.0b3
 
 maven_version="3.9.8"
 export M2_HOME="${opt_bin_dir}/maven"
-export MAVEN_OPTS='-Djava.net.preferIPv4Stack=true -Xms512m -Xmx2048m -Daether.syncContext.named.factory=rwlock-redisson -Daether.syncContext.named.time=300'
+export MAVEN_OPTS='-Djava.net.preferIPv4Stack=true -Xms512m -Xmx2048m'
 
 gradle_version="7.6.6"
 gradle_home="${opt_bin_dir}/gradle"
@@ -1047,13 +1047,6 @@ fi
 
 # Change host name to avoid resolution of host name (default is localhost.localdomain) to 127.0.0.1
 hostnamectl set-hostname dev.localdomain.local
-
-# Maven Resolver Named Locks using Redisson
-# https://maven.apache.org/resolver/maven-resolver-named-locks-redisson/index.html
-dnf install -y redis
-systemctl enable redis
-systemctl start redis
-"${provision_scripts_dir}/maven_resolver_named_locks_redisson.sh"
 
 # Clean up
 
