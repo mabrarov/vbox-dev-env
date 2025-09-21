@@ -54,8 +54,6 @@ function add_line_to_hosts() {
   grep -q -F "$1" /etc/hosts || echo "$1" >>/etc/hosts
 }
 
-golang_private_repository="gitlab.c2g.pw"
-
 user_home_dir="/home/${VAGRANT_BOX_USER}"
 
 # Default name of OS account. Matches with base VM defined in Vagrantfile (refer to config.vm.box)
@@ -68,6 +66,8 @@ MY_NAME="User"
 MY_EMAIL="${VAGRANT_BOX_USER}@localdomain.local"
 # Default user time zone
 MY_TIMEZONE="Europe/Moscow"
+# Default Go Modules private repository (absent)
+MY_GOLANG_PRIVATE_REPOSITORY=""
 # Load custom OS account name and password, full user name and email, Maven project ID
 customization_script_file="${PROVISION_CONTENT_DIR}/user.sh"
 if [[ -f "${customization_script_file}" ]]; then
@@ -104,7 +104,9 @@ fi
 
 # Configure Go Modules private repository
 etc_profile_env_script="/etc/profile.d/localenv.sh"
-echo "export GOPRIVATE=$(printf "%q" "${golang_private_repository}")" >>"${etc_profile_env_script}"
+if [[ -n "${MY_GOLANG_PRIVATE_REPOSITORY}" ]]; then
+  echo "export GOPRIVATE=$(printf "%q" "${MY_GOLANG_PRIVATE_REPOSITORY}")" >>"${etc_profile_env_script}"
+fi
 
 # IntelliJ IDEA offline license key
 idea_config_dir="${user_home_dir}/.config/JetBrains/IntelliJIdea"
@@ -160,13 +162,15 @@ fi
 git_user_config_file="${user_home_dir}/.gitconfig"
 sed -i -r 's/\{name\}/'"$(escape_text_for_sed "${MY_NAME}")"'/' "${git_user_config_file}"
 sed -i -r 's/\{email\}/'"$(escape_text_for_sed "${MY_EMAIL}")"'/' "${git_user_config_file}"
-# Go Modules fix for GitLab (in case of repository renaming).
-# Use SSH instead of HTTPS to fetch Go Modules.
-# Refer to https://github.com/golang/go/issues/37504.
-cat <<EOF >>"${git_user_config_file}"
-[url "git@${golang_private_repository}:"]
-        insteadOf = https://${golang_private_repository}/
+if [[ -n "${MY_GOLANG_PRIVATE_REPOSITORY}" ]]; then
+  # Go Modules fix for GitLab (in case of repository renaming).
+  # Use SSH instead of HTTPS to fetch Go Modules.
+  # Refer to https://github.com/golang/go/issues/37504.
+  cat <<EOF >>"${git_user_config_file}"
+[url "git@${MY_GOLANG_PRIVATE_REPOSITORY}:"]
+        insteadOf = https://${MY_GOLANG_PRIVATE_REPOSITORY}/
 EOF
+fi
 
 # Change name of OS account
 if [[ $(grep -c -E "^$(escape_text_for_regex "${MY_USER}:")" /etc/passwd) -eq 0 ]]; then

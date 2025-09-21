@@ -54,35 +54,35 @@ java21_home="${opt_bin_dir}/jdk-21"
 export JAVA_HOME="${java17_home}"
 
 export ANT_HOME="${opt_bin_dir}/ant"
-ant_version="1.10.14"
+ant_version="1.10.15"
 ant_contrib_version=1.0b3
 
-maven_version="3.9.8"
+maven_version="3.9.11"
 export M2_HOME="${opt_bin_dir}/maven"
-export MAVEN_OPTS='-Djava.net.preferIPv4Stack=true -Xms512m -Xmx2048m -Daether.syncContext.named.factory=rwlock-redisson -Daether.syncContext.named.time=300'
+export MAVEN_OPTS='-Djava.net.preferIPv4Stack=true -Xms512m -Xmx2048m'
 
-gradle_version="7.6.5"
+gradle_version="7.6.6"
 gradle_home="${opt_bin_dir}/gradle"
 
-groovy_version="4.0.27"
+groovy_version="4.0.28"
 groovy_home="${opt_bin_dir}/groovy"
 
-golang_version="1.24.4"
+golang_version="1.24.7"
 golang_home="${opt_bin_dir}/go"
 
-docker_compose_version="2.37.0"
-kubectl_version="1.33.1"
-minikube_version="1.36.0"
-helm_version="3.18.2"
-helm_secrets_plugin_version="4.6.5"
+docker_compose_version="2.39.3"
+kubectl_version="1.34.1"
+minikube_version="1.37.0"
+helm_version="3.19.0"
+helm_secrets_plugin_version="4.6.10"
 age_version="1.2.1"
 sops_version="3.10.2"
-helmfile_version="1.1.1"
-shellcheck_version="0.10.0"
-dbeaver_version="25.1.0"
-yq_version="4.45.4"
+helmfile_version="1.1.7"
+shellcheck_version="0.11.0"
+dbeaver_version="25.2.0"
+yq_version="4.47.2"
 xq_version="1.3.0"
-direnv_version="2.36.0"
+direnv_version="2.37.1"
 headlamp_version="0.28.1"
 
 intellij_idea_version="2024.3.5"
@@ -283,7 +283,7 @@ fi
 # https://www.azul.com/downloads/?version=java-8-lts&os=centos&architecture=x86-64-bit&package=jdk-fx#zulu
 if [[ ! -e "${java8_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 8"
-  folder_name="zulu8.86.0.25-ca-fx-jdk8.0.452-linux_x64"
+  folder_name="zulu8.88.0.19-ca-fx-jdk8.0.462-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
@@ -298,7 +298,7 @@ fi
 # https://www.azul.com/downloads/?version=java-11-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
 if [[ ! -e "${java11_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 11"
-  folder_name="zulu11.80.21-ca-jdk11.0.27-linux_x64"
+  folder_name="zulu11.82.19-ca-jdk11.0.28-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
@@ -312,7 +312,7 @@ fi
 # https://www.azul.com/downloads/?version=java-17-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
 if [[ ! -e "${java17_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 17"
-  folder_name="zulu17.58.21-ca-jdk17.0.15-linux_x64"
+  folder_name="zulu17.60.17-ca-jdk17.0.16-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
@@ -326,7 +326,7 @@ fi
 # https://www.azul.com/downloads/?version=java-21-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
 if [[ ! -e "${java21_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 21"
-  folder_name="zulu21.42.19-ca-jdk21.0.7-linux_x64"
+  folder_name="zulu21.44.17-ca-jdk21.0.8-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
@@ -388,7 +388,7 @@ if [[ ! -e "${M2_HOME}" ]]; then
   maven_dist="${CACHE_DIR}/apache-maven-${maven_version}-bin.tar.gz"
   if [[ ! -e "${maven_dist}" ]]; then
     curl -sLf -o "${maven_dist}" \
-      "http://mirror.reverse.net/pub/apache/maven/maven-$(echo "${maven_version}" | sed -r 's/([0-9]+)\..*/\1/')/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz"
+      "https://dlcdn.apache.org/maven/maven-$(echo "${maven_version}" | sed -r 's/([0-9]+)\..*/\1/')/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz"
   fi
   tar -xzf "${maven_dist}" -C "${opt_bin_dir}"
   mv "${opt_bin_dir}/apache-maven-${maven_version}" "${M2_HOME}"
@@ -588,18 +588,8 @@ install_jetbrains_plugin "${clion_plugin_dir}" "StringToolsPlugin-4.22.zip" \
 
 if ! which node &>/dev/null; then
   echo "=== Installing NodeJS"
-  cat <<EOF >'/etc/yum.repos.d/nodesource-el9.repo'
-[nodesource-nodejs]
-name=Node.js Packages for Linux RPM based distros - x86_64
-baseurl=https://rpm.nodesource.com/pub_22.x/nodistro/nodejs/x86_64
-priority=9
-enabled=1
-gpgcheck=1
-gpgkey=https://rpm.nodesource.com/gpgkey/ns-operations-public.key
-module_hotfixes=1
-EOF
-  rpm --import 'https://rpm.nodesource.com/gpgkey/ns-operations-public.key'
-  dnf install --enablerepo=nodesource-nodejs -y nodejs
+  dnf module enable -y nodejs:22
+  dnf install -y nodejs npm
 fi
 
 if ! which code &>/dev/null; then
@@ -1040,20 +1030,8 @@ if [[ ! -e "${headlamp_home}" ]]; then
   chown -R root:root "${opt_bin_dir}/headlamp"
 fi
 
-if ! which lens-desktop &>/dev/null; then
-  dnf config-manager -y --add-repo https://downloads.k8slens.dev/rpm/lens.repo
-  dnf install -y lens
-fi
-
 # Change host name to avoid resolution of host name (default is localhost.localdomain) to 127.0.0.1
 hostnamectl set-hostname dev.localdomain.local
-
-# Maven Resolver Named Locks using Redisson
-# https://maven.apache.org/resolver/maven-resolver-named-locks-redisson/index.html
-dnf install -y redis
-systemctl enable redis
-systemctl start redis
-"${provision_scripts_dir}/maven_resolver_named_locks_redisson.sh"
 
 # Clean up
 
