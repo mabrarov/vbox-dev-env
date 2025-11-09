@@ -18,18 +18,6 @@ All paths given in this README are relative to the directory where this README i
 1. Download prebuilt Virtual Appliance file with Rocky Linux 9 desktop - `rocky-desktop-x.y.z.ova` -
     or build it from [rocky-desktop](https://github.com/mabrarov/rocky-desktop) repository,
     then put Virtual Appliance file into the directory where this README is located.
-1. Place [IntelliJ IDEA distribution for Linux](https://www.jetbrains.com/idea/download/?section=linux) in [cache](cache) directory.
-    This file can be downloaded automatically during building Vagrant box if VPN is used.
-    Otherwise, find the name of file in [src/scripts/bootstrap.sh](src/scripts/bootstrap.sh) and place that file manually.
-1. Place [GoLand distribution for Linux](https://www.jetbrains.com/go/download/#section=linux) in [cache](cache) directory.
-    This file can be downloaded automatically during building Vagrant box if VPN is used.
-    Otherwise, find the name of file in [src/scripts/bootstrap.sh](src/scripts/bootstrap.sh) and place that file manually.
-1. Place [CLion distribution for Linux](https://www.jetbrains.com/clion/download/#section=linux) in [cache](cache) directory.
-    This file can be downloaded automatically during building Vagrant box if VPN is used.
-    Otherwise, find the name of file in [src/scripts/bootstrap.sh](src/scripts/bootstrap.sh) and place that file manually.
-1. Place [JetBrains plugins](https://plugins.jetbrains.com/) archive files in [cache](cache) directory.
-    These files can be downloaded automatically during building Vagrant box if VPN is used.
-    The set of archive files (and download URLs) which need to be placed can be found in [src/scripts/bootstrap.sh](src/scripts/bootstrap.sh).
 1. Run
     ```bash
     packer init rocky-dev.pkr.hcl && packer build rocky-dev.pkr.hcl
