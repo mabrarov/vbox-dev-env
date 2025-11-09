@@ -7,7 +7,7 @@ function set_java_home {
 export -f set_java_home
 alias d="docker"
 alias di="docker images"
-alias dps="docker ps -a --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}'"
+alias dps="docker ps -a --format 'table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}'"
 alias drma="docker ps -aq | xargs -r -I{} docker rm -f {}"
 alias drmi="docker rmi"
 alias drmid="docker images -aq -f dangling=true | xargs -r -I{} docker rmi -f {}"
