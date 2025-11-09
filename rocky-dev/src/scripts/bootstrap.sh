@@ -298,7 +298,7 @@ fi
 # https://www.azul.com/downloads/?version=java-11-lts&os=centos&architecture=x86-64-bit&package=jdk#zulu
 if [[ ! -e "${java11_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 11"
-  folder_name="zulu11.82.19-ca-jdk11.0.28-linux_x64"
+  folder_name="zulu11.84.17-ca-jdk11.0.29-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
