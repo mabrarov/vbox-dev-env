@@ -668,7 +668,7 @@ fi
 
 # https://github.com/wagoodman/dive
 # A tool for exploring a docker image, layer contents, and discovering ways to shrink the size of your Docker/OCI image.
-dive_version="0.12.0"
+dive_version="0.13.1"
 if ! which dive &>/dev/null; then
   dive_rpm="${CACHE_DIR}/dive_${dive_version}_linux_amd64.rpm"
   if [[ ! -f "${dive_rpm}" ]]; then
