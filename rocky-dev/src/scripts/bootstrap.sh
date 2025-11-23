@@ -366,7 +366,7 @@ if [[ ! -e "${ANT_HOME}" ]]; then
   ant_dist="${CACHE_DIR}/apache-ant-${ant_version}-bin.tar.gz"
   if [[ ! -e "${ant_dist}" ]]; then
     curl -sLf -o "${ant_dist}" \
-      "http://mirror.linux-ia64.org/apache//ant/binaries/apache-ant-${ant_version}-bin.tar.gz"
+      "https://dlcdn.apache.org//ant/binaries/apache-ant-${ant_version}-bin.tar.gz"
   fi
   tar -xzf "${ant_dist}" -C "${opt_bin_dir}"
   mv "${opt_bin_dir}/apache-ant-${ant_version}" "${ANT_HOME}"
