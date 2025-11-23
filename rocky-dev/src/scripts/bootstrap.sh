@@ -867,6 +867,14 @@ fi
 rsync -a --remove-source-files "${PROVISION_CONTENT_DIR}/home/user/" "${user_home_dir}/"
 chown -R "${VM_USER}:${VM_USER_GROUP}" "${user_home_dir}"
 rsync -a --remove-source-files "${PROVISION_CONTENT_DIR}/usr/local/share/applications/" "${usr_local_share_dir}/applications/"
+chmod 755 "${user_home_dir}/.profile"
+chmod 755 "${user_home_dir}/.bash_aliases"
+chmod -R og-rwx "${user_home_dir}/.m2"
+chmod u-x "${user_home_dir}/.m2"/*
+chmod 644 "${user_home_dir}/.local/share/JetBrains/consentOptions"/*
+find "${user_home_dir}/.config/JetBrains/IntelliJIdea" -type f -exec chmod a-x {} +
+find "${user_home_dir}/.config/JetBrains/GoLand" -type f -exec chmod a-x {} +
+find "${user_home_dir}/.config/JetBrains/CLion" -type f -exec chmod a-x {} +
 
 sudo -H -i -u "${VM_USER}" mkdir -p "${user_home_dir}/.pki/nssdb"
 sudo -H -i -u "${VM_USER}" modutil -create -force -dbdir "sql:${user_home_dir}/.pki/nssdb"
@@ -910,17 +918,6 @@ chmod 644 "${provision_certs_dir}"/*
 "${opt_bin_dir}/scripts/code_plugin.sh" 'HashiCorp.terraform'                         "${VM_USER}" 10
 "${opt_bin_dir}/scripts/code_plugin.sh" 'HashiCorp.HCL'                               "${VM_USER}" 10
 "${opt_bin_dir}/scripts/code_plugin.sh" 'golang.Go'                                   "${VM_USER}" 10
-
-chmod 755 "${user_home_dir}/.profile"
-chmod 755 "${user_home_dir}/.bash_aliases"
-chmod -R og-rwx "${user_home_dir}/.m2"
-chmod u-x "${user_home_dir}/.m2"/*
-chmod 644 "${user_home_dir}/.local/share/JetBrains/consentOptions"/*
-find "${user_home_dir}/.config/JetBrains/IntelliJIdea" -type f -exec chmod a-x {} +
-find "${user_home_dir}/.config/JetBrains/GoLand" -type f -exec chmod a-x {} +
-find "${user_home_dir}/.config/JetBrains/CLion" -type f -exec chmod a-x {} +
-
-chown -R "${VM_USER}:${VM_USER_GROUP}" "${user_home_dir}"
 
 root_home="/root"
 root_npm_config="${root_home}/.npmrc"
