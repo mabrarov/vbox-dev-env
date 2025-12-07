@@ -67,7 +67,7 @@ gradle_home="${opt_bin_dir}/gradle"
 groovy_version="4.0.29"
 groovy_home="${opt_bin_dir}/groovy"
 
-golang_version="1.25.4"
+golang_version="1.25.5"
 golang_home="${opt_bin_dir}/go"
 
 docker_compose_version="2.40.3"
@@ -339,7 +339,7 @@ if [[ ! -e "${java21_home}" ]]; then
 fi
 
 if [[ ! -e "${golang_home}" ]]; then
-  echo "=== Installing Go"
+  echo "=== Installing Go SDK"
   fname="go${golang_version}.linux-amd64.tar.gz"
   golang_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${golang_dist}" ]]; then
