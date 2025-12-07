@@ -347,6 +347,8 @@ if [[ ! -e "${golang_home}" ]]; then
   fi
   tar -xzf "${golang_dist}" -C "${opt_bin_dir}"
   chown -R root:root "${golang_home}"
+  # Turn off Go telemetry (https://go.dev/doc/telemetry)
+  sudo -H -i -u "${VM_USER}" "${golang_home}/bin/go" telemetry off
 fi
 
 if [[ ! -e "${groovy_home}" ]]; then
