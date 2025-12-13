@@ -67,7 +67,7 @@ gradle_home="${opt_bin_dir}/gradle"
 groovy_version="4.0.29"
 groovy_home="${opt_bin_dir}/groovy"
 
-golang_version="1.25.4"
+golang_version="1.25.5"
 golang_home="${opt_bin_dir}/go"
 
 docker_compose_version="2.40.3"
@@ -110,6 +110,7 @@ echo "export M2_HOME=$(printf "%q" "${M2_HOME}")" >>"${etc_profile_env_script}"
 echo "export MAVEN_OPTS=$(printf "%q" "${MAVEN_OPTS}")" >>"${etc_profile_env_script}"
 echo "export GOPATH=$(printf "%q" "${repository_dir}/go")" >>"${etc_profile_env_script}"
 echo "export GOCACHE=$(printf "%q" "${repository_dir}/cache/go-build")" >>"${etc_profile_env_script}"
+echo "export GOTOOLCHAIN=$(printf "%q" "local")" >>"${etc_profile_env_script}"
 echo "pathmunge $(printf "%q" "${golang_home}/bin")" >>"${etc_profile_env_script}"
 echo "pathmunge $(printf "%q" "${groovy_home}/bin")" >>"${etc_profile_env_script}"
 echo "pathmunge $(printf "%q" "${JAVA_HOME}/bin")" >>"${etc_profile_env_script}"
@@ -338,7 +339,7 @@ if [[ ! -e "${java21_home}" ]]; then
 fi
 
 if [[ ! -e "${golang_home}" ]]; then
-  echo "=== Installing Go"
+  echo "=== Installing Go SDK"
   fname="go${golang_version}.linux-amd64.tar.gz"
   golang_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${golang_dist}" ]]; then
@@ -346,6 +347,8 @@ if [[ ! -e "${golang_home}" ]]; then
   fi
   tar -xzf "${golang_dist}" -C "${opt_bin_dir}"
   chown -R root:root "${golang_home}"
+  # Turn off Go telemetry (https://go.dev/doc/telemetry)
+  sudo -H -i -u "${VM_USER}" "${golang_home}/bin/go" telemetry off
 fi
 
 if [[ ! -e "${groovy_home}" ]]; then
