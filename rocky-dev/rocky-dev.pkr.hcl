@@ -19,7 +19,7 @@ variable "vm_name" {
 
 variable "vm_version" {
   type        = string
-  default     = "1.1.11"
+  default     = "1.1.12"
   description = "Version of Vagrant box"
 }
 
@@ -37,7 +37,7 @@ variable "base_ova_name" {
 
 variable "base_ova_version" {
   type        = string
-  default     = "1.0.11"
+  default     = "1.0.12"
   description = "Version of base OVA"
 }
 
