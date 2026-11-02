@@ -603,7 +603,7 @@ install_jetbrains_plugin "${clion_plugin_dir}" "qml-plugin-262.9437.22.zip" \
 
 if ! which node &>/dev/null; then
   echo "=== Installing NodeJS"
-  dnf module enable -y nodejs:22
+  dnf module enable -y nodejs:24
   dnf install -y nodejs npm
 fi
 
