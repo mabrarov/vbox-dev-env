@@ -79,7 +79,7 @@ age_version="1.3.2"
 sops_version="3.13.3"
 helmfile_version="1.8.2"
 shellcheck_version="0.11.0"
-dbeaver_version="25.2.4"
+dbeaver_version="26.2.4"
 yq_version="4.48.1"
 xq_version="1.3.0"
 direnv_version="2.37.1"
@@ -853,9 +853,9 @@ fc-cache -f
 if [[ ! -e "${opt_bin_dir}/dbeaver" ]]; then
   echo "=== Installing DBeaver"
   dbv_url="$(curl -jsLf "https://github.com/dbeaver/dbeaver/releases/expanded_assets/${dbeaver_version}" |
-    grep -F -- "-linux.gtk.x86_64.tar.gz" |
+    grep -F -- "-linux-x86_64.tar.gz" |
     grep "href" |
-    sed -r 's/^.+"([^"]+dbeaver-ce-[0-9\.]+-linux.gtk.x86_64.tar.gz)".+$/https:\/\/github.com\1/')"
+    sed -r 's/^.+"([^"]+dbeaver-ce-[0-9\.]+-linux-x86_64.tar.gz)".+$/https:\/\/github.com\1/')"
   test "x${dbv_url}" != "x"
   dbv_fname="$(echo "${dbv_url}" | sed -r 's/^.+\/([^/]+)$/\1/')"
   dbv_dist="${CACHE_DIR}/${dbv_fname}"
