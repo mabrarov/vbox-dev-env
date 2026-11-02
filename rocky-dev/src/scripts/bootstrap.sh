@@ -82,7 +82,7 @@ shellcheck_version="0.11.0"
 dbeaver_version="26.2.4"
 yq_version="4.54.1"
 xq_version="1.5.1"
-direnv_version="2.37.1"
+direnv_version="2.38.2"
 headlamp_version="0.28.1"
 
 intellij_idea_version="2025.2.4"
