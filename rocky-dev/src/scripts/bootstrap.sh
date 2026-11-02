@@ -284,7 +284,7 @@ fi
 # https://www.azul.com/downloads/?version=java-8-lts&os=centos&architecture=x86-64-bit&package=jdk-fx#zulu
 if [[ ! -e "${java8_home}" ]]; then
   echo "=== Installing Azul Zulu CE JDK 8"
-  folder_name="zulu8.90.0.19-ca-fx-jdk8.0.472-linux_x64"
+  folder_name="zulu8.96.0.205-ca-fx-jdk8.0.504-linux_x64"
   fname="${folder_name}.tar.gz"
   jdk_dist="${CACHE_DIR}/${fname}"
   if [[ ! -e "${jdk_dist}" ]]; then
