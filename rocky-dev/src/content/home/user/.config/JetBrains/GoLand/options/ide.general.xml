@@ -9,7 +9,7 @@
     <entry key="moved.to.new.ui" value="true" source="SYSTEM" />
     <entry key="ide.experimental.ui" value="true" source="SYSTEM" />
     <entry key="jdk.updater" value="false" source="SYSTEM" />
-    <entry key="suggest.all.run.configurations.from.context" value="true" source="SYSTEM" />
+    <entry key="switched.from.classic.to.islands" value="false" source="SYSTEM" />
   </component>
   <component name="StatusBar">
     <option name="widgets">
