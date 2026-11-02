@@ -55,9 +55,9 @@ export JAVA_HOME="${java17_home}"
 
 export ANT_HOME="${opt_bin_dir}/ant"
 ant_version="1.10.18"
-ant_contrib_version=1.0b3
+ant_contrib_version="1.0b3"
 
-maven_version="3.9.11"
+maven_version="3.10.0"
 export M2_HOME="${opt_bin_dir}/maven"
 export MAVEN_OPTS='-Djava.net.preferIPv4Stack=true -Xms512m -Xmx2048m'
 
