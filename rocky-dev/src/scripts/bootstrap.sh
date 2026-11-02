@@ -32,7 +32,7 @@ function install_jetbrains_plugin() {
     curl -sLf -o "${plugin_dist}" "${plugin_dist_url}"
   fi
   mkdir -p "${plugin_dir}"
-  unzip -q -d "${plugin_dir}" "${plugin_dist}"
+  unzip -u -o -q -d "${plugin_dir}" "${plugin_dist}"
 }
 
 user_home_dir="/home/${VM_USER}"
@@ -85,7 +85,7 @@ xq_version="1.5.1"
 direnv_version="2.38.2"
 headlamp_version="0.46.0"
 
-intellij_idea_version="2025.2.4"
+intellij_idea_version="2026.2.1"
 goland_version="2025.2.4"
 clion_version="2025.2.4"
 
@@ -436,7 +436,7 @@ fi
 idea_home="${opt_bin_dir}/ideaIU"
 if [[ ! -e "${idea_home}" ]]; then
   echo "=== Installing IntelliJ IDEA"
-  idea_fname="ideaIU-${intellij_idea_version}.tar.gz"
+  idea_fname="idea-${intellij_idea_version}.tar.gz"
   idea_dist="${CACHE_DIR}/${idea_fname}"
   if [[ ! -e "${idea_dist}" ]]; then
     curl -sLf -o "${idea_dist}" "https://download-cdn.jetbrains.com/idea/${idea_fname}"
@@ -464,41 +464,44 @@ fi
 # IntelliJ IDEA plugins
 idea_plugin_dir="${user_home_dir}/.local/share/JetBrains/IntelliJIdea"
 # AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
-install_jetbrains_plugin "${idea_plugin_dir}" "asciidoctor-intellij-plugin-0.44.10.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7391/880448/asciidoctor-intellij-plugin-0.44.10.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "asciidoctor-intellij-plugin-0.45.11.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7391/1209017/asciidoctor-intellij-plugin-0.45.11.zip"
 # Makefile Language (https://plugins.jetbrains.com/plugin/9333-makefile-language)
-install_jetbrains_plugin "${idea_plugin_dir}" "makefile-252.25557.77.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/9333/834213/makefile-252.25557.77.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "makefile-262.8665.176.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/9333/1102606/makefile-262.8665.176.zip"
 # Go (https://plugins.jetbrains.com/plugin/9568-go)
-install_jetbrains_plugin "${idea_plugin_dir}" "go-plugin-252.27397.103.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/9568/882349/go-plugin-252.27397.103.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "go-plugin-262.9437.185.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/9568/1132051/go-plugin-262.9437.185.zip"
 # Go Template (https://plugins.jetbrains.com/plugin/10581-go-template)
-install_jetbrains_plugin "${idea_plugin_dir}" "go-template-252.23892.201.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10581/796391/go-template-252.23892.201.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "go-template-262.8665.173.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10581/1102348/go-template-262.8665.173.zip"
 # Batch Scripts Support (https://plugins.jetbrains.com/plugin/265-batch-scripts-support)
 install_jetbrains_plugin "${idea_plugin_dir}" "idea-batch-1.0.13.zip" \
   "https://downloads.marketplace.jetbrains.com/files/265/148140/idea-batch-1.0.13.zip"
 # PowerShell (https://plugins.jetbrains.com/plugin/10249-powershell)
-install_jetbrains_plugin "${idea_plugin_dir}" "PowerShell-2.11.0.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10249/787790/PowerShell-2.11.0.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "intellij-powershell-2.12.0.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10249/1111526/intellij-powershell-2.12.0.zip"
+# Toml (https://plugins.jetbrains.com/plugin/8195-toml)
+install_jetbrains_plugin "${idea_plugin_dir}" "toml-262.9437.22.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/8195/1115348/toml-262.9437.22.zip"
 # Python Community Edition (https://plugins.jetbrains.com/plugin/7322-python-community-edition)
-install_jetbrains_plugin "${idea_plugin_dir}" "python-ce-252.27397.103.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7322/882365/python-ce-252.27397.103.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "python-ce-262.9437.185.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7322/1132046/python-ce-262.9437.185.zip"
 # Python (https://plugins.jetbrains.com/plugin/631-python)
-install_jetbrains_plugin "${idea_plugin_dir}" "python-252.27397.103.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/631/882374/python-252.27397.103.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "python-262.9437.185.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/631/1132042/python-262.9437.185.zip"
 # Ruby (https://plugins.jetbrains.com/plugin/1293-ruby)
-install_jetbrains_plugin "${idea_plugin_dir}" "ruby-252.27397.28.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/1293/878459/ruby-252.27397.28.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "ruby-262.9437.22.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/1293/1115389/ruby-262.9437.22.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
-install_jetbrains_plugin "${idea_plugin_dir}" "StringToolsPlugin-4.23.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10066/885539/StringToolsPlugin-4.23.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "StringToolsPlugin-4.32.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10066/1114767/StringToolsPlugin-4.32.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
-install_jetbrains_plugin "${idea_plugin_dir}" "terraform-252.26199.7.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7808/849114/terraform-252.26199.7.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "terraform-262.9437.22.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7808/1115409/terraform-262.9437.22.zip"
 # Native Debugging Support (https://plugins.jetbrains.com/plugin/12775-native-debugging-support)
-install_jetbrains_plugin "${idea_plugin_dir}" "nativeDebug-plugin-252.26830.84.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/12775/870918/nativeDebug-plugin-252.26830.84.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "nativeDebug-plugin-262.9437.142.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/12775/1126828/nativeDebug-plugin-262.9437.142.zip"
 
 goland_home="${opt_bin_dir}/goland"
 if [[ ! -e "${goland_home}" ]]; then
