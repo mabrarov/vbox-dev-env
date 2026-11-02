@@ -87,7 +87,7 @@ headlamp_version="0.46.0"
 
 intellij_idea_version="2026.2.1"
 goland_version="2026.2.1"
-clion_version="2025.2.4"
+clion_version="2026.2.1"
 
 add_line_to_hosts "# Some entries integrated into Vagrant box"
 
@@ -580,26 +580,26 @@ fi
 # CLion plugins
 clion_plugin_dir="${user_home_dir}/.local/share/JetBrains/CLion"
 # AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
-install_jetbrains_plugin "${clion_plugin_dir}" "asciidoctor-intellij-plugin-0.44.10.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7391/634204/asciidoctor-intellij-plugin-0.44.10.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "asciidoctor-intellij-plugin-0.45.11.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7391/1209017/asciidoctor-intellij-plugin-0.45.11.zip"
 # Kubernetes (https://plugins.jetbrains.com/plugin/10485-kubernetes)
-install_jetbrains_plugin "${clion_plugin_dir}" "clouds-kubernetes-252.27397.129.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10485/884817/clouds-kubernetes-252.27397.129.zip"
+install_jetbrains_plugin "${clion_plugin_dir}" "clouds-kubernetes-262.9437.27.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10485/1115930/clouds-kubernetes-262.9437.27.zip"
 # Go Template (https://plugins.jetbrains.com/plugin/10581-go-template)
-install_jetbrains_plugin "${clion_plugin_dir}" "go-template-252.23892.201.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10581/796391/go-template-252.23892.201.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "go-template-262.8665.173.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10581/1102348/go-template-262.8665.173.zip"
 # PowerShell (https://plugins.jetbrains.com/plugin/10249-powershell)
-install_jetbrains_plugin "${clion_plugin_dir}" "PowerShell-2.11.0.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10249/787790/PowerShell-2.11.0.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "intellij-powershell-2.12.0.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10249/1111526/intellij-powershell-2.12.0.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
-install_jetbrains_plugin "${clion_plugin_dir}" "StringToolsPlugin-4.23.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10066/885539/StringToolsPlugin-4.23.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "StringToolsPlugin-4.32.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10066/1114767/StringToolsPlugin-4.32.zip"
 # Qt (https://plugins.jetbrains.com/plugin/25301-qt)
-install_jetbrains_plugin "${clion_plugin_dir}" "qt-plugin-252.27397.129.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/25301/884813/qt-plugin-252.27397.129.zip"
+install_jetbrains_plugin "${clion_plugin_dir}" "qt-plugin-262.8665.173.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/25301/1102435/qt-plugin-262.8665.173.zip"
 # QML (https://plugins.jetbrains.com/plugin/25303-qml)
-install_jetbrains_plugin "${clion_plugin_dir}" "qml-plugin-252.27397.129.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/25303/884818/qml-plugin-252.27397.129.zip"
+install_jetbrains_plugin "${clion_plugin_dir}" "qml-plugin-262.9437.22.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/25303/1115325/qml-plugin-262.9437.22.zip"
 
 if ! which node &>/dev/null; then
   echo "=== Installing NodeJS"
