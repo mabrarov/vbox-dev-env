@@ -61,7 +61,7 @@ maven_version="3.10.0"
 export M2_HOME="${opt_bin_dir}/maven"
 export MAVEN_OPTS='-Djava.net.preferIPv4Stack=true -Xms512m -Xmx2048m'
 
-gradle_version="7.6.6"
+gradle_version="9.8.2"
 gradle_home="${opt_bin_dir}/gradle"
 
 groovy_version="4.0.29"
