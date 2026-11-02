@@ -81,7 +81,7 @@ helmfile_version="1.8.2"
 shellcheck_version="0.11.0"
 dbeaver_version="26.2.4"
 yq_version="4.54.1"
-xq_version="1.3.0"
+xq_version="1.5.1"
 direnv_version="2.37.1"
 headlamp_version="0.28.1"
 
