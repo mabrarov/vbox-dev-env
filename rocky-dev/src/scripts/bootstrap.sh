@@ -86,7 +86,7 @@ direnv_version="2.38.2"
 headlamp_version="0.46.0"
 
 intellij_idea_version="2026.2.1"
-goland_version="2025.2.4"
+goland_version="2026.2.1"
 clion_version="2025.2.4"
 
 add_line_to_hosts "# Some entries integrated into Vagrant box"
@@ -534,20 +534,20 @@ fi
 # GoLand plugins
 goland_plugin_dir="${user_home_dir}/.local/share/JetBrains/GoLand"
 # AsciiDoc (https://plugins.jetbrains.com/plugin/7391-asciidoc)
-install_jetbrains_plugin "${goland_plugin_dir}" "asciidoctor-intellij-plugin-0.44.10.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7391/658997/asciidoctor-intellij-plugin-0.44.10.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "asciidoctor-intellij-plugin-0.45.11.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7391/1209017/asciidoctor-intellij-plugin-0.45.11.zip"
 # Batch Scripts Support (https://plugins.jetbrains.com/plugin/265-batch-scripts-support)
 install_jetbrains_plugin "${goland_plugin_dir}" "idea-batch-1.0.13.zip" \
   "https://downloads.marketplace.jetbrains.com/files/265/148140/idea-batch-1.0.13.zip"
 # PowerShell (https://plugins.jetbrains.com/plugin/10249-powershell)
-install_jetbrains_plugin "${goland_plugin_dir}" "PowerShell-2.11.0.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10249/787790/PowerShell-2.11.0.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "intellij-powershell-2.12.0.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10249/1111526/intellij-powershell-2.12.0.zip"
 # String Tools (https://plugins.jetbrains.com/plugin/10066-string-tools)
-install_jetbrains_plugin "${goland_plugin_dir}" "StringToolsPlugin-4.23.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/10066/885539/StringToolsPlugin-4.23.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "StringToolsPlugin-4.32.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/10066/1114767/StringToolsPlugin-4.32.zip"
 # Terraform and HCL (https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl/versions)
-install_jetbrains_plugin "${goland_plugin_dir}" "terraform-252.26199.7.zip" \
-  "https://downloads.marketplace.jetbrains.com/files/7808/849114/terraform-252.26199.7.zip"
+install_jetbrains_plugin "${idea_plugin_dir}" "terraform-262.9437.22.zip" \
+  "https://downloads.marketplace.jetbrains.com/files/7808/1115409/terraform-262.9437.22.zip"
 
 clion_home="${opt_bin_dir}/clion"
 if [[ ! -e "${clion_home}" ]]; then
