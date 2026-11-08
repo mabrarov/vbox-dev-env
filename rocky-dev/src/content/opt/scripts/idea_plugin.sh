@@ -16,7 +16,7 @@ fname="$(curl -sIL "${url}" | grep -o -E 'filename="[^"]+"' | sed -r 's/.*filena
 ext=${fname##*.}
 if [[ "${ext}" == "zip" ]]; then
   curl -jksSL "${url}" -o /tmp/plugin.zip
-  unzip -u -q /tmp/plugin.zip -d /home/user/.local/share/JetBrains/IntelliJIdea
+  unzip -u -o -q /tmp/plugin.zip -d /home/user/.local/share/JetBrains/IntelliJIdea
   rm -f /tmp/plugin.zip
 elif [[ "${ext}" == "jar" ]]; then
   curl -jksSL "${url}" -o "/home/user/.local/share/JetBrains/IntelliJIdea/${fname}"
